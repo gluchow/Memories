@@ -10,7 +10,14 @@ import Foundation
 
 struct Storyboard {
     
+    struct Segue {
+        static let ShowNewTimeline = "Show New Timeline"
+        static let ShowMoments = "Show Moments"
+        static let ShowNewMoment = "Show New Moment"
+    }
+    
     struct Identifier {
-        static let TimelineCell = "Timeline Cell"
+        static let TimelineTableCell = "Timeline Cell"
+        static let MomentTableCell = "Moment Cell"
     }
 }

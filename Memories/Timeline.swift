@@ -2,20 +2,19 @@
 //  Timeline.swift
 //  Memories
 //
-//  Created by admin on 15.05.16.
+//  Created by admin on 16.05.16.
 //  Copyright © 2016 gluglu. All rights reserved.
 //
 
 import Foundation
+import CoreData
 
-class Timeline {
-    var name: String
-    var creationDate: NSDate
-    var moments: [Moment]?
+class Timeline: NSManagedObject {
+    static let EntityName = "Timeline"
     
-    init(name: String) {
-        self.name = name
-        self.creationDate = NSDate()
+    var momentsArray: [Moment] {
+        get {
+            return moments == nil ? [Moment]() : Array(moments!)
+        }
     }
-    
 }

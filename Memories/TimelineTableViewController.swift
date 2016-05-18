@@ -8,65 +8,72 @@
 
 import UIKit
 
-class TimelineTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class TimelineTableViewController: UITableViewController {
     private var timelines = [Timeline]()
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        log("viewWillAppear")
+        
+        // TODO prüfen, ob es sinnvoll ist jedes Mal die Daten zu laden
+        loadData()
+    }
     
-    @IBOutlet var tableView: UITableView!{
-        didSet {
-            tableView.delegate = self
-            tableView.dataSource = self
+    private func loadData() {
+        timelines.removeAll()
+        if let result = TimelineDao().findAll() {
+            timelines = result
+            tableView.reloadData()
         }
     }
-
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // TODO: die echten Daten laden
-        loadMockData()
+        log("viewDidLoad")
     }
     
-    private func loadMockData() {
-        for i in 1..<4 {
-            timelines.append(Timeline(name: "Timeline \(i)"))
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if(segue.identifier == Storyboard.Segue.ShowMoments) {
+            if let indexPath = self.tableView.indexPathForSelectedRow {
+                let timeline = timelines[indexPath.row]
+                let momentsTableViewController = segue.destinationViewController as! MomentsTableViewController
+
+                momentsTableViewController.timeline = timeline
+            }
         }
     }
-    
-    
-    
-    
-    // ------------------------------------------------------------------------------------------------------
-    // MARK: UITableViewDelegate
-    
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
-    {
-        // TODO
-    }
-    
-    
+
     
     
     // ------------------------------------------------------------------------------------------------------
     // MARK: UITableViewDataSource
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
-        var cell = tableView.dequeueReusableCellWithIdentifier(Storyboard.Identifier.TimelineCell)
+        var cell = tableView.dequeueReusableCellWithIdentifier(Storyboard.Identifier.TimelineTableCell)
 
         if cell == nil {
-            cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: Storyboard.Identifier.TimelineCell)
+            cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: Storyboard.Identifier.TimelineTableCell)
         }
         
+        // TODO eigenen Celltype
         cell?.textLabel?.text = timelines[indexPath.row].name
 
         return cell!
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return timelines.count
+    }
+    
+    
+    
+    // ------------------------------------------------------------------------------------------------------
+    // MARK: helping functions
+    private func log(text: String) {
+        let currentClassType = NSStringFromClass(self.dynamicType)
+        print("\(currentClassType) - \(text)")
     }
 
 }
