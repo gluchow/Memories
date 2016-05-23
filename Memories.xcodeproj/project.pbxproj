@@ -76,7 +76,6 @@
 			isa = PBXGroup;
 			children = (
 				8402BAF11CE3856900027535 /* Memories */,
-				8476FD281CE92FE50056E899 /* dao */,
 				8402BAF01CE3856900027535 /* Products */,
 				DE97A8A51AC32C40F98A99C8 /* Pods */,
 				D967A7B2832E9C912513DEDB /* Frameworks */,
@@ -94,6 +93,7 @@
 		8402BAF11CE3856900027535 /* Memories */ = {
 			isa = PBXGroup;
 			children = (
+				8476FD281CE92FE50056E899 /* dao */,
 				8417AF311CE7BBBB00D770FC /* base */,
 				848767561CE7F5E0009039C1 /* view */,
 				8417AF301CE7BB8800D770FC /* model */,
@@ -146,7 +146,6 @@
 				8476FD301CE93FED0056E899 /* MomentDao.swift */,
 			);
 			name = dao;
-			path = Memories;
 			sourceTree = "<group>";
 		};
 		848767561CE7F5E0009039C1 /* view */ = {
