@@ -1,11 +1,3 @@
-//
-//  UIViewController_Alerts.swift
-//  Memories
-//
-//  Created by admin on 22.05.16.
-//  Copyright © 2016 gluglu. All rights reserved.
-//
-
 import UIKit
 
 extension UIViewController {
