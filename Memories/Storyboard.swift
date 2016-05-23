@@ -1,11 +1,3 @@
-//
-//  Storyboard.swift
-//  Memories
-//
-//  Created by admin on 15.05.16.
-//  Copyright © 2016 gluglu. All rights reserved.
-//
-
 import Foundation
 
 struct Storyboard {
@@ -14,6 +6,7 @@ struct Storyboard {
         static let ShowNewTimeline = "Show New Timeline"
         static let ShowMoments = "Show Moments"
         static let ShowNewMoment = "Show New Moment"
+        static let ShowMomentDetails = "Show Moment Details"
     }
     
     struct Identifier {
