@@ -74,6 +74,7 @@ class TimelineTableViewController: UITableViewController {
     private func log(text: String) {
         let currentClassType = NSStringFromClass(self.dynamicType)
         print("\(currentClassType) - \(text)")
+        // NSLog("\(currentClassType) - \(text)")
     }
 
 }
