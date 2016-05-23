@@ -1,0 +1,55 @@
+// API Doku: http://openweathermap.org/current
+
+// Wetter-Icons: http://openweathermap.org/weather-conditions
+
+// request: http://api.openweathermap.org/data/2.5/weather?lat=47.8391&lon=12.1026&units=metric&APPID=0d7a30389dcee9d56882e9579d1d171b
+// Parameter:
+//  lat=47.8391 // lat long von Rosenheim
+//  lon=12.1026 // lat long von Rosenheim
+//  units=metric // Celsius
+//  APPID=0d7a30389dcee9d56882e9579d1d171b // API Key
+
+{
+  "coord": {
+    "lon": 12.12,
+    "lat": 47.86
+  },
+  "weather": [
+    {
+      "id": 501,
+      "main": "Rain",
+      "description": "moderate rain",
+      "icon": "10d"
+    }
+  ],
+  "base": "cmc stations",
+  "main": {
+    "temp": 13.25,
+    "pressure": 1012,
+    "humidity": 93,
+    "temp_min": 11.11,
+    "temp_max": 17.22
+  },
+  "wind": {
+    "speed": 0.41,
+    "deg": 346.504
+  },
+  "rain": {
+    "3h": 4.395
+  },
+  "clouds": {
+    "all": 92
+  },
+  "dt": 1464002227,
+  "sys": {
+    "type": 3,
+    "id": 255455,
+    "message": 0.0041,
+    "country": "DE",
+    "sunrise": 1463973811,
+    "sunset": 1464029631
+  },
+  "id": 2844988,
+  "name": "Rosenheim",
+  "cod": 200
+}
