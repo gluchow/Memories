@@ -1,35 +1,38 @@
 import UIKit
 
-class MomentsTableViewController: UITableViewController {
+class MomentsTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     private var moments = [Moment]()
     
     var timeline: Timeline? {
         didSet {
-            moments.removeAll()
+            print("MomentsTableViewController - timeline didSet")
             if timeline != nil {
                 moments = timeline!.momentsArray
             }
-            reloadUI()
         }
     }
-
-    // TODO prüfen, wie didSet überschrieben wird. Evtl. müssen delegates manuell gesetzt werden.
-//    override var tableView: UITableView! {
-//        didSet {
-//            super.tableView.estimatedRowHeight = 200
-//            super.tableView.rowHeight = UITableViewAutomaticDimension;
-//        }
-//    }
+    
+    var tableView: UITableView! {
+        didSet {
+            // TODO max. tableView.rowHeight?            
+            tableView.estimatedRowHeight = 150
+            tableView.rowHeight = UITableViewAutomaticDimension;
+        }
+    }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        moments.removeAll()
-        reloadUI()
+        print("MomentsTableViewController - viewWillAppear")
+
+        if tableView != nil {
+            reloadUI()
+        }
     }
- 
+    
     private func reloadUI() {
-        // TODO main thread?
+        moments.removeAll()
+        
         if let loadedMoments = MomentDao().findAll(forTimeline: timeline!) {
             moments = loadedMoments
         }
@@ -61,7 +64,7 @@ class MomentsTableViewController: UITableViewController {
     // ------------------------------------------------------------------------------------------------------
     // MARK: UITableViewDataSource
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         var cell = tableView.dequeueReusableCellWithIdentifier(Storyboard.Identifier.MomentTableCell) as? MomentTableViewCell
         
@@ -74,18 +77,9 @@ class MomentsTableViewController: UITableViewController {
         return cell!
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return moments.count
     }
-    
-    // ------------------------------------------------------------------------------------------------------
-    // MARK: UITableViewDelegate
-    
-//    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
-//    {
-//        let moment = moments[indexPath.row]
-//        performSegueWithIdentifier(Storyboard.Segue.ShowMomentDetails, sender: moment)
-//    }
     
 }

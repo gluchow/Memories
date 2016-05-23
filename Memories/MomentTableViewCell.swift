@@ -5,7 +5,7 @@ class MomentTableViewCell: UITableViewCell {
     // TODO public API -> Moment Object
     var moment: Moment? {
         didSet {
-            print("MomentTableViewCell - moment didSet... moment: \(moment)")
+            print("MomentTableViewCell - moment didSet... moment: \(moment != nil)")
             // TODO zu früh, label fields könnten noch nicht da sein
             updateUI()
         }
