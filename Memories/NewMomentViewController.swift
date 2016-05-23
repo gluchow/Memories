@@ -8,6 +8,8 @@ class NewMomentViewController: UIViewController, UITextFieldDelegate {
     // TODO so okay? anfangs noch nicht gesetzt. für save() 
     var timeline: Timeline?
 
+    private var momentDao = MomentDao()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -16,12 +18,27 @@ class NewMomentViewController: UIViewController, UITextFieldDelegate {
     }
     
     func save(sender: AnyObject) {
-        MomentDao().persistMoment(forName: nameTextField.text!, withinTimeline: timeline!)
+        let momentEntity = momentDao.createNewMomentEntity(forName: nameTextField.text!, withinTimeline: timeline!)
+        momentEntity.descriptiontext = descriptionTextField.text
+        // TODO weitere Felder setzen
+        
+        let persistResult = momentDao.persistMoment(momentEntity)
+        
+        if let error = persistResult.error {
+            showErrorMessage("Moment could not be saved. Error code: \(error.code)") // TODO was soll dem Benutzer gezeigt werden?
+        }
+        
+        // success, just close pop the top (current) view controller
         navigationController?.popViewControllerAnimated(true)
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
+        if textField == nameTextField {
+            textField.resignFirstResponder()
+            // TODO auslesen..
+        }
+        // TODO Beschreibungsfeld auslesen?
+       
         return true
     }
     
