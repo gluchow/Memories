@@ -29,6 +29,8 @@ class NewMomentViewController: UIViewController, UITextFieldDelegate {
             
             let momentEntity = self.momentDao.createNewMomentEntity(forName: self.nameTextField.text!, withinTimeline: self.timeline!)
             momentEntity.descriptiontext = self.descriptionTextField.text
+            momentEntity.weather = callback.weather
+            callback.weather?.moment = momentEntity // TODO benötigt, oder kümmert sich core data drum?
             
             // TODO weitere Felder setzen
             

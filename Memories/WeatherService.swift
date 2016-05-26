@@ -23,7 +23,7 @@ class WeatherService: NSObject {
         return Singleton.instance
     }
     
-    func fetchWeather(forLatitude lat: Double, andLongitude lon: Double, callback: WeatherResponseCallback) {
+    func fetchWeather(forLatitude lat: Double, andLongitude lon: Double, withResponseCallback callback: WeatherResponseCallback) {
         let parameter = [ParameterName.ApiKey: APIKey,
                          ParameterName.ResponseFormatMode: ResponseFormat,
                          ParameterName.Units: TemperatureUnit,
@@ -34,11 +34,11 @@ class WeatherService: NSObject {
         
         if let url = NSURL(string: urlString) {
             print("Request weather data - url: \(urlString)")
-            handleWeatherRequest(forUrl: url, withResponseCallback: callback)
+            executeWeatherRequest(forUrl: url, withResponseCallback: callback)
         }
     }
     
-    private func handleWeatherRequest(forUrl url: NSURL, withResponseCallback callback: WeatherResponseCallback) {
+    private func executeWeatherRequest(forUrl url: NSURL, withResponseCallback callback: WeatherResponseCallback) {
         manager
             .request(NSURLRequest(URL: url))
             .responseJSON(options: NSJSONReadingOptions.AllowFragments) {
@@ -72,21 +72,24 @@ class WeatherService: NSObject {
     }
     
     private func createWeather(result: Dictionary<String, AnyObject>, withResponseCallback callback: WeatherResponseCallback) {
-        // Ohne Konstanten aus meiner Sicht einfacher und direkt nachvollziehbar.
-        if let weather = result["weather"] {
-            print(JSON(weather)[0]["description"])
-            print(JSON(weather)[0]["icon"])
-        }
-        if let main = result["main"] {
-            print(JSON(main)["temp"])
-        }
-        if let coordinates = result["coord"] {
-            print(JSON(coordinates)["lat"])
-            print(JSON(coordinates)["lon"])
-        }
+        let weatherDao = WeatherDao()
+        let weatherEntity = weatherDao.createNewWeatherEntity()
         
-        // TODO Konvertieren in Weather-Objekt (Core Data Enitität) und der Callback-Methode übergeben
-        callback(weather: nil, error: nil)
+        // TODO nachfragen: ohne Konstanten aus meiner Sicht einfacher und direkt nachvollziehbar.
+        if let weatherJson = result["weather"] {
+            weatherEntity.descriptionText = JSON(weatherJson)[0]["description"].stringValue
+        }
+        if let mainJson = result["main"] {
+            weatherEntity.temperature = JSON(mainJson)["temp"].floatValue
+        }
+        if let coordinatesJson = result["coord"] {
+            weatherEntity.latitude = JSON(coordinatesJson)["lat"].doubleValue
+            weatherEntity.longitude = JSON(coordinatesJson)["lon"].doubleValue
+        }
+
+        print("created Weather Entity: \(weatherEntity)")
+        
+        callback(weather: weatherEntity, error: nil)
     }
     
     private func urlWithParameter(parameter: Dictionary<String, String>) -> String {

@@ -13,6 +13,8 @@ class MomentDetailsViewController: UIViewController {
     @IBOutlet weak var descriptionLabelField: UILabel!
     @IBOutlet weak var creationDateLabelField: UILabel!
     
+    @IBOutlet weak var weatherTemperature: UILabel!
+    @IBOutlet weak var weatherDescription: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,11 +29,15 @@ class MomentDetailsViewController: UIViewController {
         nameLabelField?.text = nil
         descriptionLabelField?.text = nil
         creationDateLabelField?.text = nil
+        weatherDescription?.text = nil
+        weatherTemperature?.text = nil
         
         if let moment = self.moment {
             nameLabelField?.text = moment.name
             descriptionLabelField?.text = moment.descriptiontext
             creationDateLabelField?.text = moment.creationDate?.description // TODO Formatter
+            weatherDescription?.text = moment.weather?.descriptionText
+            weatherTemperature?.text = moment.weather?.temperature?.stringValue
         }
     }
 

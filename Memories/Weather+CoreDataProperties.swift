@@ -1,5 +1,5 @@
 //
-//  Moment+CoreDataProperties.swift
+//  Weather+CoreDataProperties.swift
 //  Memories
 //
 //  Created by admin on 26.05.16.
@@ -12,14 +12,13 @@
 import Foundation
 import CoreData
 
-extension Moment {
+extension Weather {
 
-    @NSManaged var creationDate: NSDate?
-    @NSManaged var descriptiontext: String?
     @NSManaged var latitude: NSNumber?
     @NSManaged var longitude: NSNumber?
-    @NSManaged var name: String?
-    @NSManaged var timeline: Timeline?
-    @NSManaged var weather: Weather?
+    @NSManaged var descriptionText: String?
+    @NSManaged var temperature: NSNumber?
+    @NSManaged var openweatherIconId: NSNumber?
+    @NSManaged var moment: Moment?
 
 }

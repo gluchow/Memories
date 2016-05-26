@@ -12,7 +12,7 @@ class TimelineDao: BaseDao {
             print("found \(result.count) timelines.")
             
             for timeline in (result as? [Timeline])! {
-                print("Timeline has \(timeline.momentsArray.count)")
+                print("Timeline has \(timeline.momentsArray.count) moments.")
             }
             
             return result as? [Timeline]

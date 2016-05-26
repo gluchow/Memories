@@ -161,14 +161,31 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="weather temp" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fsj-aL-ETf">
+                                <rect key="frame" x="23" y="207" width="106" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="weather description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bq0-kG-rug">
+                                <rect key="frame" x="20" y="236" width="152" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="leadingMargin" secondItem="huV-po-3IO" secondAttribute="leading" id="14t-8M-f30"/>
                             <constraint firstAttribute="leadingMargin" secondItem="IBj-8Z-xpj" secondAttribute="leading" id="CDb-hB-hyf"/>
                             <constraint firstItem="IBj-8Z-xpj" firstAttribute="top" secondItem="xGC-C1-c4R" secondAttribute="bottom" constant="8" id="Fh6-ZD-gdd"/>
+                            <constraint firstItem="Fsj-aL-ETf" firstAttribute="top" secondItem="IBj-8Z-xpj" secondAttribute="bottom" constant="8" id="K7I-ah-KPM"/>
+                            <constraint firstItem="Bq0-kG-rug" firstAttribute="top" secondItem="Fsj-aL-ETf" secondAttribute="bottom" constant="8" symbolic="YES" id="KGN-2B-YQX"/>
                             <constraint firstAttribute="leadingMargin" secondItem="xGC-C1-c4R" secondAttribute="leading" id="Rwg-da-rI6"/>
+                            <constraint firstItem="Fsj-aL-ETf" firstAttribute="leading" secondItem="2bQ-mb-7Ah" secondAttribute="leadingMargin" constant="3" id="aLD-ZL-vMC"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="Bq0-kG-rug" secondAttribute="leading" id="k5U-MA-T5l"/>
                             <constraint firstItem="huV-po-3IO" firstAttribute="top" secondItem="NA6-Ot-EJ7" secondAttribute="bottom" constant="8" id="nun-6c-EGs"/>
+                            <constraint firstItem="Bq0-kG-rug" firstAttribute="leading" secondItem="Fsj-aL-ETf" secondAttribute="trailing" constant="-109" id="wCD-KY-COR"/>
                             <constraint firstItem="xGC-C1-c4R" firstAttribute="top" secondItem="huV-po-3IO" secondAttribute="bottom" constant="8" id="xU2-1J-u9c"/>
                         </constraints>
                     </view>
@@ -177,6 +194,8 @@
                         <outlet property="creationDateLabelField" destination="IBj-8Z-xpj" id="Bcl-WA-bCh"/>
                         <outlet property="descriptionLabelField" destination="xGC-C1-c4R" id="iLW-dV-ih0"/>
                         <outlet property="nameLabelField" destination="huV-po-3IO" id="l2e-et-M6l"/>
+                        <outlet property="weatherDescription" destination="Bq0-kG-rug" id="TOe-ie-a8s"/>
+                        <outlet property="weatherTemperature" destination="Fsj-aL-ETf" id="pQh-Dm-bro"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8dh-Xq-P1V" userLabel="First Responder" sceneMemberID="firstResponder"/>

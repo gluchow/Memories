@@ -2,6 +2,7 @@ import Foundation
 import CoreData // TODO warum muss CoreData importiert werden, wenn die Basisklasse dies bereits macht?
 
 class MomentDao : BaseDao {
+    
     typealias PersistMomentResponse = (moment: Moment?, error: NSError?)
     
     func findAll(forTimeline timeline: Timeline) -> [Moment]? {
@@ -39,7 +40,7 @@ class MomentDao : BaseDao {
             return(moment, nil)
             
         } catch let error as NSError  {
-            print("Could not save \(error), \(error.userInfo)")
+            print("Could not save Moment: \(error), \(error.userInfo)")
             return(nil, error)
         }
     }
