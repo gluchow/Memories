@@ -13,8 +13,15 @@ class MomentDetailsViewController: UIViewController {
     @IBOutlet weak var descriptionLabelField: UILabel!
     @IBOutlet weak var creationDateLabelField: UILabel!
     
-    @IBOutlet weak var weatherTemperature: UILabel!
-    @IBOutlet weak var weatherDescription: UILabel!
+    @IBOutlet weak var weatherTemperatureLabelField: UILabel!
+    @IBOutlet weak var weatherDescriptionLabelField: UILabel!
+    @IBOutlet weak var latitudeLabelField: UILabel!
+    @IBOutlet weak var longitudeLabelField: UILabel!
+    
+    @IBOutlet weak var countryLabelField: UILabel!
+    @IBOutlet weak var locationNameLabelField: UILabel!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,15 +36,25 @@ class MomentDetailsViewController: UIViewController {
         nameLabelField?.text = nil
         descriptionLabelField?.text = nil
         creationDateLabelField?.text = nil
-        weatherDescription?.text = nil
-        weatherTemperature?.text = nil
+        weatherDescriptionLabelField?.text = nil
+        weatherTemperatureLabelField?.text = nil
+        latitudeLabelField?.text = nil
+        longitudeLabelField?.text = nil
+        countryLabelField?.text = nil
+        locationNameLabelField?.text = nil
         
         if let moment = self.moment {
             nameLabelField?.text = moment.name
             descriptionLabelField?.text = moment.descriptiontext
             creationDateLabelField?.text = moment.creationDate?.description // TODO Formatter
-            weatherDescription?.text = moment.weather?.descriptionText
-            weatherTemperature?.text = moment.weather?.temperature?.stringValue
+            weatherDescriptionLabelField?.text = moment.weather?.descriptionText
+            weatherTemperatureLabelField?.text = moment.weather?.temperature?.stringValue
+            latitudeLabelField?.text = moment.latitude?.stringValue
+            longitudeLabelField?.text = moment.longitude?.stringValue
+            
+            // TODO über Wetter-Service lassen? anderen Service einbinden zum Ermitteln des Ortnamens?
+            countryLabelField?.text = moment.weather?.country
+            locationNameLabelField?.text = moment.weather?.locationName
         }
     }
 

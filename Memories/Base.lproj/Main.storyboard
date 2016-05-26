@@ -167,6 +167,30 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="latitude" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C8v-e4-brE">
+                                <rect key="frame" x="20" y="265" width="58" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="longitude" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HoG-Ub-1g4">
+                                <rect key="frame" x="23" y="294" width="72" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="country" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rfy-YX-kCd">
+                                <rect key="frame" x="20" y="323" width="59" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="locationName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s2B-k0-Yv1">
+                                <rect key="frame" x="23" y="352" width="106" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="weather description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bq0-kG-rug">
                                 <rect key="frame" x="20" y="236" width="152" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -177,25 +201,47 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="leadingMargin" secondItem="huV-po-3IO" secondAttribute="leading" id="14t-8M-f30"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="C8v-e4-brE" secondAttribute="leading" id="4OS-ma-xqV"/>
+                            <constraint firstItem="HoG-Ub-1g4" firstAttribute="leading" secondItem="2bQ-mb-7Ah" secondAttribute="leadingMargin" constant="3" id="4gt-TV-IbS"/>
+                            <constraint firstItem="HoG-Ub-1g4" firstAttribute="leading" secondItem="2bQ-mb-7Ah" secondAttribute="leadingMargin" constant="3" id="BcN-ha-oby"/>
                             <constraint firstAttribute="leadingMargin" secondItem="IBj-8Z-xpj" secondAttribute="leading" id="CDb-hB-hyf"/>
+                            <constraint firstItem="HoG-Ub-1g4" firstAttribute="leading" secondItem="2bQ-mb-7Ah" secondAttribute="leadingMargin" constant="3" id="Elm-eo-f6T"/>
                             <constraint firstItem="IBj-8Z-xpj" firstAttribute="top" secondItem="xGC-C1-c4R" secondAttribute="bottom" constant="8" id="Fh6-ZD-gdd"/>
+                            <constraint firstItem="HoG-Ub-1g4" firstAttribute="leading" secondItem="2bQ-mb-7Ah" secondAttribute="leadingMargin" constant="-30" id="Gkf-9y-SgH"/>
                             <constraint firstItem="Fsj-aL-ETf" firstAttribute="top" secondItem="IBj-8Z-xpj" secondAttribute="bottom" constant="8" id="K7I-ah-KPM"/>
                             <constraint firstItem="Bq0-kG-rug" firstAttribute="top" secondItem="Fsj-aL-ETf" secondAttribute="bottom" constant="8" symbolic="YES" id="KGN-2B-YQX"/>
                             <constraint firstAttribute="leadingMargin" secondItem="xGC-C1-c4R" secondAttribute="leading" id="Rwg-da-rI6"/>
+                            <constraint firstItem="s2B-k0-Yv1" firstAttribute="leading" secondItem="2bQ-mb-7Ah" secondAttribute="leadingMargin" constant="3" id="S4C-X1-lX4"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="Rfy-YX-kCd" secondAttribute="leading" id="TN0-hg-t9G"/>
                             <constraint firstItem="Fsj-aL-ETf" firstAttribute="leading" secondItem="2bQ-mb-7Ah" secondAttribute="leadingMargin" constant="3" id="aLD-ZL-vMC"/>
+                            <constraint firstItem="HoG-Ub-1g4" firstAttribute="top" secondItem="C8v-e4-brE" secondAttribute="bottom" constant="8" id="jYe-9e-zjO"/>
                             <constraint firstAttribute="leadingMargin" secondItem="Bq0-kG-rug" secondAttribute="leading" id="k5U-MA-T5l"/>
+                            <constraint firstItem="Rfy-YX-kCd" firstAttribute="top" secondItem="HoG-Ub-1g4" secondAttribute="bottom" constant="8" id="lzR-2e-PXC"/>
                             <constraint firstItem="huV-po-3IO" firstAttribute="top" secondItem="NA6-Ot-EJ7" secondAttribute="bottom" constant="8" id="nun-6c-EGs"/>
+                            <constraint firstItem="s2B-k0-Yv1" firstAttribute="top" secondItem="Rfy-YX-kCd" secondAttribute="bottom" constant="8" id="ohr-gC-pqi"/>
+                            <constraint firstItem="C8v-e4-brE" firstAttribute="top" secondItem="Bq0-kG-rug" secondAttribute="bottom" constant="8" id="w1c-ER-sDg"/>
                             <constraint firstItem="Bq0-kG-rug" firstAttribute="leading" secondItem="Fsj-aL-ETf" secondAttribute="trailing" constant="-109" id="wCD-KY-COR"/>
                             <constraint firstItem="xGC-C1-c4R" firstAttribute="top" secondItem="huV-po-3IO" secondAttribute="bottom" constant="8" id="xU2-1J-u9c"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="4gt-TV-IbS"/>
+                                <exclude reference="Elm-eo-f6T"/>
+                                <exclude reference="Gkf-9y-SgH"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Moment Details" id="vha-yf-FBl"/>
                     <connections>
+                        <outlet property="countryLabelField" destination="Rfy-YX-kCd" id="Vvo-jw-oI5"/>
                         <outlet property="creationDateLabelField" destination="IBj-8Z-xpj" id="Bcl-WA-bCh"/>
                         <outlet property="descriptionLabelField" destination="xGC-C1-c4R" id="iLW-dV-ih0"/>
+                        <outlet property="latitudeLabelField" destination="C8v-e4-brE" id="Q4x-0g-0ix"/>
+                        <outlet property="locationNameLabelField" destination="s2B-k0-Yv1" id="guE-0X-uGS"/>
+                        <outlet property="longitudeLabelField" destination="HoG-Ub-1g4" id="nxi-22-z1Z"/>
                         <outlet property="nameLabelField" destination="huV-po-3IO" id="l2e-et-M6l"/>
-                        <outlet property="weatherDescription" destination="Bq0-kG-rug" id="TOe-ie-a8s"/>
-                        <outlet property="weatherTemperature" destination="Fsj-aL-ETf" id="pQh-Dm-bro"/>
+                        <outlet property="weatherDescriptionLabelField" destination="Bq0-kG-rug" id="2vu-k9-VeO"/>
+                        <outlet property="weatherTemperatureLabelField" destination="Fsj-aL-ETf" id="zCo-FJ-pSa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8dh-Xq-P1V" userLabel="First Responder" sceneMemberID="firstResponder"/>

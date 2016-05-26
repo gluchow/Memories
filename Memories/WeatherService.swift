@@ -86,9 +86,13 @@ class WeatherService: NSObject {
             weatherEntity.latitude = JSON(coordinatesJson)["lat"].doubleValue
             weatherEntity.longitude = JSON(coordinatesJson)["lon"].doubleValue
         }
+        if let sysJson = result["sys"] {
+            weatherEntity.country = JSON(sysJson)["country"].stringValue
+        }
+        if let locationName = result["name"] {
+            weatherEntity.locationName = JSON(locationName).stringValue
+        }
 
-        print("created Weather Entity: \(weatherEntity)")
-        
         callback(weather: weatherEntity, error: nil)
     }
     

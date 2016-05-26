@@ -19,6 +19,8 @@ extension Weather {
     @NSManaged var descriptionText: String?
     @NSManaged var temperature: NSNumber?
     @NSManaged var openweatherIconId: NSNumber?
+    @NSManaged var country: String?
+    @NSManaged var locationName: String?
     @NSManaged var moment: Moment?
 
 }
