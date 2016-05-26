@@ -32,6 +32,7 @@
 		84BA3A4E1CF1D63800CC490B /* MomentDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BA3A4D1CF1D63800CC490B /* MomentDetailsViewController.swift */; };
 		84F5D7561CE88DE4008278B9 /* MomentLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F5D7551CE88DE4008278B9 /* MomentLocation.swift */; };
 		84F5D75B1CE89277008278B9 /* Storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F5D75A1CE89277008278B9 /* Storyboard.swift */; };
+		84F70B291CF6F886004CC6DA /* WeatherDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F70B281CF6F886004CC6DA /* WeatherDao.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +64,7 @@
 		84BA3A4D1CF1D63800CC490B /* MomentDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MomentDetailsViewController.swift; sourceTree = "<group>"; };
 		84F5D7551CE88DE4008278B9 /* MomentLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MomentLocation.swift; sourceTree = "<group>"; };
 		84F5D75A1CE89277008278B9 /* Storyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storyboard.swift; sourceTree = "<group>"; };
+		84F70B281CF6F886004CC6DA /* WeatherDao.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherDao.swift; sourceTree = "<group>"; };
 		C75A53EDDF331AD9F37A96B6 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -152,6 +154,7 @@
 				8476FD2A1CE9301B0056E899 /* TimelineDao.swift */,
 				8476FD2C1CE932270056E899 /* BaseDao.swift */,
 				8476FD301CE93FED0056E899 /* MomentDao.swift */,
+				84F70B281CF6F886004CC6DA /* WeatherDao.swift */,
 			);
 			name = dao;
 			sourceTree = "<group>";
@@ -368,6 +371,7 @@
 				8402BAFB1CE3856900027535 /* Memories.xcdatamodeld in Sources */,
 				8476FD261CE92ADF0056E899 /* Moment+CoreDataProperties.swift in Sources */,
 				84BA3A4A1CF1BCBF00CC490B /* UIViewController_Alerts.swift in Sources */,
+				84F70B291CF6F886004CC6DA /* WeatherDao.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

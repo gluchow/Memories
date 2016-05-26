@@ -2,11 +2,8 @@ import UIKit
 
 class MomentTableViewCell: UITableViewCell {
 
-    // TODO public API -> Moment Object
     var moment: Moment? {
         didSet {
-            print("MomentTableViewCell - moment didSet... moment: \(moment != nil)")
-            // TODO zu früh, label fields könnten noch nicht da sein
             updateUI()
         }
     }
@@ -21,7 +18,6 @@ class MomentTableViewCell: UITableViewCell {
         descriptionLabelField?.text = nil
         momentImage?.image = nil
         
-        // TODO prüfen, ob das sein muss
         if let moment = self.moment {
             nameLabelField?.text = moment.name
             descriptionLabelField?.text = moment.descriptiontext
@@ -33,7 +29,7 @@ class MomentTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
-        print("MomentTableViewCell selected...")
+        // TODO benötigt?
     }
 
 }

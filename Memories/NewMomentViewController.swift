@@ -18,18 +18,31 @@ class NewMomentViewController: UIViewController, UITextFieldDelegate {
     }
     
     func save(sender: AnyObject) {
-        let momentEntity = momentDao.createNewMomentEntity(forName: nameTextField.text!, withinTimeline: timeline!)
-        momentEntity.descriptiontext = descriptionTextField.text
-        // TODO weitere Felder setzen
         
-        let persistResult = momentDao.persistMoment(momentEntity)
-        
-        if let error = persistResult.error {
-            showErrorMessage("Moment could not be saved. Error code: \(error.code)") // TODO was soll dem Benutzer gezeigt werden?
+        // TODO latitude und longitude des aktuellen Standorts ermitteln
+        WeatherService.sharedInstance.fetchWeather(forLatitude: 47.8391, andLongitude: 12.1026) {
+            callback in
+            
+            if let error = callback.error {
+                print("Wetterdaten konnten nicht abgefragt werden. Fehler-Code: \(error.code)")
+            }
+            
+            let momentEntity = self.momentDao.createNewMomentEntity(forName: self.nameTextField.text!, withinTimeline: self.timeline!)
+            momentEntity.descriptiontext = self.descriptionTextField.text
+            
+            // TODO weitere Felder setzen
+            
+            let persistResult = self.momentDao.persistMoment(momentEntity)
+            
+            if let error = persistResult.error {
+                self.showErrorMessage("Moment konnte nicht gespeichert werden. Fehler-Code: \(error.code)") // TODO was soll dem Benutzer gezeigt werden?
+                return
+            }
+            
+            // success, just close pop the top (current) view controller
+            self.navigationController?.popViewControllerAnimated(true)
         }
         
-        // success, just close pop the top (current) view controller
-        navigationController?.popViewControllerAnimated(true)
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
