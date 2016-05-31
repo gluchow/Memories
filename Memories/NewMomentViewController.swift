@@ -41,11 +41,12 @@ class NewMomentViewController: UIViewController, UITextFieldDelegate, CLLocation
         print("current location: \(location)")
         let latitude = location.coordinate.latitude
         let longitude = location.coordinate.longitude
-        
-        
-        
+
         moment.latitude = latitude
         moment.longitude = longitude
+
+        // TODO nur zum Testen, später entfernen oder übernehmen, Async lib?
+        checkReverseGeocode(forLatitude: latitude, andLongitude: longitude)
         
         WeatherService.sharedInstance.fetchWeather(forLatitude: latitude, andLongitude: longitude) {
             callback in
@@ -58,6 +59,31 @@ class NewMomentViewController: UIViewController, UITextFieldDelegate, CLLocation
             callback.weather?.moment = moment // TODO benötigt, oder kümmert sich core data drum?
 
             self.persistMomentAndCloseViewOnSuccess(moment)
+        }
+    }
+    
+    private func checkReverseGeocode(forLatitude latitude: Double, andLongitude longitude: Double) {
+        let location = CLLocation(latitude: latitude, longitude: longitude)
+        print(location)
+        
+        CLGeocoder().reverseGeocodeLocation(location) {
+            (placemarks, error) -> Void in
+            print(location)
+            
+            if error != nil {
+                print("Reverse geocoder failed with error" + error!.localizedDescription)
+                return
+            }
+            
+            if placemarks!.count > 0 {
+                let pm = placemarks![0]
+                print("found locality...")
+                print(pm.country)
+                print(pm.locality)
+            }
+            else {
+                print("Problem with the data received from geocoder")
+            }
         }
     }
 
