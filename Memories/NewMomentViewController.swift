@@ -1,8 +1,9 @@
 import UIKit
 import MapKit
 import CoreLocation
+import MobileCoreServices
 
-class NewMomentViewController: UIViewController, UITextFieldDelegate, CLLocationManagerDelegate {
+class NewMomentViewController: UIViewController, UITextFieldDelegate, CLLocationManagerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var nameTextField: UITextField! { didSet { nameTextField.delegate = self } }
     @IBOutlet weak var descriptionTextField: UITextView!
 
@@ -11,7 +12,7 @@ class NewMomentViewController: UIViewController, UITextFieldDelegate, CLLocation
     var timeline: Timeline?
     
     private var locationManager: CLLocationManager!
-
+    
     private var momentDao = MomentDao()
     
     override func viewDidLoad() {
@@ -23,6 +24,32 @@ class NewMomentViewController: UIViewController, UITextFieldDelegate, CLLocation
         initLocationManager()
     }
     
+    @IBAction func takePhotoAction() {
+        print("take photo...")
+        if UIImagePickerController.isSourceTypeAvailable(.PhotoLibrary) { // TODO wieder zurück auf .Camera (nicht im Simulator möglich)
+            let picker = UIImagePickerController()
+            picker.sourceType = .PhotoLibrary // TODO wieder zurück auf .Camera (nicht im Simulator möglich)
+            picker.mediaTypes = [kUTTypeImage as String] // TODO prüfen, ob das so i.O. ist
+            picker.delegate = self
+            picker.allowsEditing = true
+            presentViewController(picker, animated: true, completion: nil)
+        }
+    }
+
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        var image = info[UIImagePickerControllerEditedImage] as? UIImage
+        if image == nil {
+            image = info[UIImagePickerControllerOriginalImage] as? UIImage
+        }
+        // TODO mit dem Image etwas machen (in Entität speichern, anzeigen, ...?)
+        print("image picked: \(image.debugDescription)")
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+
     func save(sender: AnyObject) {
         let momentEntity = self.momentDao.createNewMomentEntity(forName: self.nameTextField.text!, withinTimeline: self.timeline!)
         momentEntity.descriptiontext = self.descriptionTextField.text
@@ -71,18 +98,18 @@ class NewMomentViewController: UIViewController, UITextFieldDelegate, CLLocation
             print(location)
             
             if error != nil {
-                print("Reverse geocoder failed with error" + error!.localizedDescription)
+                print("Reverse geocoder fehlgeschlagen: " + error!.localizedDescription)
                 return
             }
             
             if placemarks!.count > 0 {
                 let pm = placemarks![0]
-                print("found locality...")
+                print("Reverse geocoder - Placemark gefunden: ")
                 print(pm.country)
                 print(pm.locality)
             }
             else {
-                print("Problem with the data received from geocoder")
+                print("Keine Daten vom Reverse geocoder bekommen.")
             }
         }
     }
