@@ -2,8 +2,13 @@ import UIKit
 import MapKit
 import CoreLocation
 import MobileCoreServices
+import Contacts
+import ContactsUI
+import Photos
+import AssetsLibrary
 
-class NewMomentViewController: UIViewController, UITextFieldDelegate, CLLocationManagerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class NewMomentViewController: UIViewController, UITextFieldDelegate, CLLocationManagerDelegate,
+        UIImagePickerControllerDelegate, UINavigationControllerDelegate, CNContactPickerDelegate {
     @IBOutlet weak var nameTextField: UITextField! { didSet { nameTextField.delegate = self } }
     @IBOutlet weak var descriptionTextField: UITextView!
 
@@ -22,6 +27,48 @@ class NewMomentViewController: UIViewController, UITextFieldDelegate, CLLocation
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: #selector(save(_:)))
         
         initLocationManager()
+
+        //initContacts()
+    }
+
+    // TODO prüfen ob benötigt. was passiert, wenn der Benutzer den Zugriff nicht erlaubt?
+    private func initContacts() {
+        // TODO: var contactStore = CNContactStore()
+        let authorizationStatus = CNContactStore.authorizationStatusForEntityType(CNEntityType.Contacts)
+        
+        
+        // TODO deprecated in iOS 9.0, stattdessen: CNContactStore
+//        let authorizationStatus = ABAddressBookGetAuthorizationStatus()
+        switch authorizationStatus {
+        case .Denied, .Restricted:
+            //1
+            print("Denied")
+        case .Authorized:
+            //2
+            print("Authorized")
+        case .NotDetermined:
+            //3
+            print("Not Determined")
+        }
+
+    }
+    
+    @IBAction func showContactsAction() {
+        let contactPickerViewController = CNContactPickerViewController()
+        
+        // TODO predicates benötigt?
+        // contactPickerViewController.predicateForEnablingContact = NSPredicate(format: "birthday != nil")
+        
+        contactPickerViewController.delegate = self
+        
+        presentViewController(contactPickerViewController, animated: true, completion: nil)
+    }
+
+    func contactPicker(picker: CNContactPickerViewController, didSelectContact contact: CNContact) {
+        //delegate.didFetchContacts([contact])
+        print("contact picked: \(contact.familyName)")
+        //navigationController?.popViewControllerAnimated(true)
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func takePhotoAction() {
@@ -41,10 +88,39 @@ class NewMomentViewController: UIViewController, UITextFieldDelegate, CLLocation
         if image == nil {
             image = info[UIImagePickerControllerOriginalImage] as? UIImage
         }
+        let imageUrl = info[UIImagePickerControllerReferenceURL] as? NSURL
+        print("image url: \(imageUrl)")
+        if imageUrl != nil {
+            getUIImagefromAsseturl(imageUrl!)
+        }
+        
         // TODO mit dem Image etwas machen (in Entität speichern, anzeigen, ...?)
+        // https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIKitFunctionReference/index.html#//apple_ref/c/func/UIImageWriteToSavedPhotosAlbum
+        // http://www.codingexplorer.com/choosing-images-with-uiimagepickercontroller-in-swift/
+        // unter einem best. Pfad abspeichern http://stackoverflow.com/questions/28255789/getting-url-of-uiimage-selected-from-uiimagepickercontroller
         print("image picked: \(image.debugDescription)")
         dismissViewControllerAnimated(true, completion: nil)
     }
+    
+    func getUIImagefromAsseturl (url: NSURL) {
+        let authorization = PHPhotoLibrary.authorizationStatus()
+        print("photo library auth: \(authorization.rawValue)")
+
+        let asset = PHAsset.fetchAssetsWithALAssetURLs([url], options: nil).firstObject as! PHAsset
+        let fullTargetSize = CGSizeMake(-1, -1)
+        let options = PHImageRequestOptions()
+        
+        PHImageManager.defaultManager().requestImageForAsset(asset, targetSize: fullTargetSize, contentMode: PHImageContentMode.AspectFit, options: options, resultHandler: {
+            (result, info) in
+            print("fetched image with manager: \(result)")
+            self.testImage.image = result
+            self.testImage.contentMode = .ScaleAspectFit
+        })
+    }
+
+    // TODO nur zu Testzwecken - Umbauen der gesamten View in eine statische Tabelle
+    @IBOutlet weak var testImage: UIImageView!
+
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         dismissViewControllerAnimated(true, completion: nil)
