@@ -19,6 +19,7 @@ class NewMomentViewController: UIViewController, UITextFieldDelegate, CLLocation
     private var locationManager: CLLocationManager!
     
     private var momentDao = MomentDao()
+    private var locationDao = LocationDAO()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -127,26 +128,31 @@ class NewMomentViewController: UIViewController, UITextFieldDelegate, CLLocation
     }
 
     func save(sender: AnyObject) {
-        let momentEntity = self.momentDao.createNewMomentEntity(forName: self.nameTextField.text!, withinTimeline: self.timeline!)
-        momentEntity.descriptiontext = self.descriptionTextField.text
-
-        if let currentLocation = self.locationManager.location {
-            persistMomentWithWeatherAndCloseViewOnSuccess(forMoment: momentEntity, andCurrentLocation: currentLocation)
-            return
+        do {
+            let momentEntity = try self.momentDao.createNewMomentEntity(forName: self.nameTextField.text!, withinTimeline: self.timeline!)
+            momentEntity.descriptiontext = self.descriptionTextField.text
             
-        } else {
-            persistMomentAndCloseViewOnSuccess(momentEntity)
+            if let currentLocation = self.locationManager.location {
+                persistMomentWithWeatherAndCloseViewOnSuccess(forMoment: momentEntity, andCurrentLocation: currentLocation)
+                
+            } else {
+                persistMomentAndCloseViewOnSuccess(momentEntity)
+            }
+            
+        } catch MomentError.NameValidationError {
+            showErrorMessage("Name must have at least 3 characters.")
+        } catch {
+            showErrorMessage("Could not create a new moment. Unexpected error occurred.")
         }
-   
+           
     }
     
     private func persistMomentWithWeatherAndCloseViewOnSuccess(forMoment moment: Moment, andCurrentLocation location: CLLocation) {
         print("current location: \(location)")
         let latitude = location.coordinate.latitude
         let longitude = location.coordinate.longitude
-
-        moment.latitude = latitude
-        moment.longitude = longitude
+        
+        moment.location = locationDao.createNewWeatherEntity(withLatitude: latitude, andLongitude: longitude)
 
         // TODO nur zum Testen, später entfernen oder übernehmen, Async lib?
         checkReverseGeocode(forLatitude: latitude, andLongitude: longitude)
@@ -155,7 +161,7 @@ class NewMomentViewController: UIViewController, UITextFieldDelegate, CLLocation
             callback in
             
             if let error = callback.error {
-                print("Wetterdaten konnten nicht abgefragt werden. Fehler-Code: \(error.code)")
+                print("Weather data could't be fetched. Error code: \(error.code)")
             }
             
             moment.weather = callback.weather
@@ -174,7 +180,7 @@ class NewMomentViewController: UIViewController, UITextFieldDelegate, CLLocation
             print(location)
             
             if error != nil {
-                print("Reverse geocoder fehlgeschlagen: " + error!.localizedDescription)
+                print("Error in reverse geocoder: " + error!.localizedDescription)
                 return
             }
             
@@ -185,16 +191,16 @@ class NewMomentViewController: UIViewController, UITextFieldDelegate, CLLocation
                 print(pm.locality)
             }
             else {
-                print("Keine Daten vom Reverse geocoder bekommen.")
+                print("No Data from reverse geocoder received.")
             }
         }
     }
 
     private func persistMomentAndCloseViewOnSuccess(momentEntity: Moment) {
         let persistResult = self.momentDao.persistMoment(momentEntity)
-        
+
         if let error = persistResult.error {
-            self.showErrorMessage("Moment konnte nicht gespeichert werden. Fehler-Code: \(error.code)") // TODO was soll dem Benutzer gezeigt werden?
+            self.showErrorMessage("Moment couldn't be saved. \(error.domain). Error code: \(error.code)") // TODO was soll dem Benutzer gezeigt werden?
             return
         }
         

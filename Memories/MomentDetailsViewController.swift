@@ -49,8 +49,8 @@ class MomentDetailsViewController: UIViewController {
             creationDateLabelField?.text = moment.creationDate?.description // TODO Formatter
             weatherDescriptionLabelField?.text = moment.weather?.descriptionText
             weatherTemperatureLabelField?.text = moment.weather?.temperature?.stringValue
-            latitudeLabelField?.text = moment.latitude?.stringValue
-            longitudeLabelField?.text = moment.longitude?.stringValue
+            latitudeLabelField?.text = moment.location?.latitude?.stringValue
+            longitudeLabelField?.text = moment.location?.longitude?.stringValue
             
             // TODO über Wetter-Service lassen? anderen Service einbinden zum Ermitteln des Ortnamens?
             countryLabelField?.text = moment.weather?.country

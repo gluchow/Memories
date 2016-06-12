@@ -15,6 +15,9 @@
 		8402BAFB1CE3856900027535 /* Memories.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8402BAF91CE3856900027535 /* Memories.xcdatamodeld */; };
 		8402BAFD1CE3856900027535 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8402BAFC1CE3856900027535 /* Assets.xcassets */; };
 		8402BB001CE3856900027535 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8402BAFE1CE3856900027535 /* LaunchScreen.storyboard */; };
+		8415AFA01D0D823200BB6B62 /* Location+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8415AF9E1D0D823200BB6B62 /* Location+CoreDataProperties.swift */; };
+		8415AFA11D0D823200BB6B62 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8415AF9F1D0D823200BB6B62 /* Location.swift */; };
+		8415AFA31D0D836500BB6B62 /* LocationDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8415AFA21D0D836500BB6B62 /* LocationDAO.swift */; };
 		8476FD241CE92ADF0056E899 /* Timeline+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8476FD201CE92ADE0056E899 /* Timeline+CoreDataProperties.swift */; };
 		8476FD251CE92ADF0056E899 /* Timeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8476FD211CE92ADE0056E899 /* Timeline.swift */; };
 		8476FD261CE92ADF0056E899 /* Moment+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8476FD221CE92ADE0056E899 /* Moment+CoreDataProperties.swift */; };
@@ -48,6 +51,9 @@
 		8402BAFC1CE3856900027535 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8402BAFF1CE3856900027535 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8402BB011CE3856900027535 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8415AF9E1D0D823200BB6B62 /* Location+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8415AF9F1D0D823200BB6B62 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		8415AFA21D0D836500BB6B62 /* LocationDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationDAO.swift; sourceTree = "<group>"; };
 		8476FD201CE92ADE0056E899 /* Timeline+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Timeline+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8476FD211CE92ADE0056E899 /* Timeline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timeline.swift; sourceTree = "<group>"; };
 		8476FD221CE92ADE0056E899 /* Moment+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Moment+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -126,6 +132,8 @@
 				8476FD231CE92ADF0056E899 /* Moment.swift */,
 				84F70B2A1CF70427004CC6DA /* Weather+CoreDataProperties.swift */,
 				84F70B2B1CF70427004CC6DA /* Weather.swift */,
+				8415AF9E1D0D823200BB6B62 /* Location+CoreDataProperties.swift */,
+				8415AF9F1D0D823200BB6B62 /* Location.swift */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -158,6 +166,7 @@
 				8476FD2C1CE932270056E899 /* BaseDao.swift */,
 				8476FD301CE93FED0056E899 /* MomentDao.swift */,
 				84F70B281CF6F886004CC6DA /* WeatherDao.swift */,
+				8415AFA21D0D836500BB6B62 /* LocationDAO.swift */,
 			);
 			name = dao;
 			sourceTree = "<group>";
@@ -360,10 +369,13 @@
 				8476FD311CE93FED0056E899 /* MomentDao.swift in Sources */,
 				848A7E911CE8BA700052EECD /* NewTimelineViewController.swift in Sources */,
 				8476FD271CE92ADF0056E899 /* Moment.swift in Sources */,
+				8415AFA31D0D836500BB6B62 /* LocationDAO.swift in Sources */,
 				8402BAF51CE3856900027535 /* TimelineTableViewController.swift in Sources */,
 				84BA3A4C1CF1D55E00CC490B /* MomentTableViewCell.swift in Sources */,
 				8476FD2B1CE9301B0056E899 /* TimelineDao.swift in Sources */,
 				8476FD241CE92ADF0056E899 /* Timeline+CoreDataProperties.swift in Sources */,
+				8415AFA11D0D823200BB6B62 /* Location.swift in Sources */,
+				8415AFA01D0D823200BB6B62 /* Location+CoreDataProperties.swift in Sources */,
 				8476FD2D1CE932270056E899 /* BaseDao.swift in Sources */,
 				8476FD331CE941BF0056E899 /* NewMomentViewController.swift in Sources */,
 				84A01E4F1CF3246800CA992A /* WeatherService.swift in Sources */,

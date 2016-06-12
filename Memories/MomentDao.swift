@@ -1,7 +1,13 @@
 import Foundation
 import CoreData // TODO warum muss CoreData importiert werden, wenn die Basisklasse dies bereits macht?
 
+enum MomentError: ErrorType {
+    case NameValidationError
+}
+
 class MomentDao : BaseDao {
+    
+
     
     typealias PersistMomentResponse = (moment: Moment?, error: NSError?)
     
@@ -20,16 +26,18 @@ class MomentDao : BaseDao {
         }
     }
     
-    func createNewMomentEntity(forName name: String, withinTimeline timeline: Timeline) -> Moment {
+    func createNewMomentEntity(forName name: String, withinTimeline timeline: Timeline) throws -> Moment {
+        try ensureNameIsValid(name)
+        
         let moment =  createEntity(forName: Moment.EntityName) as! Moment
         moment.name = name
         moment.creationDate = NSDate() // TODO anders lösen - evtl. init oder Ähnliches in der Entität
         moment.timeline = timeline
         return moment;
     }
-    
-    func persistMoment(forName name: String, withinTimeline timeline: Timeline) ->  PersistMomentResponse {
-        let moment =  createNewMomentEntity(forName: name, withinTimeline: timeline)
+
+    func persistMoment(forName name: String, withinTimeline timeline: Timeline) throws ->  PersistMomentResponse {
+        let moment = try createNewMomentEntity(forName: name, withinTimeline: timeline)
         return persistMoment(moment)
     }
     
@@ -45,5 +53,10 @@ class MomentDao : BaseDao {
         }
     }
     
+    private func ensureNameIsValid(name: String) throws {
+        if name.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()).characters.count < 3 {
+            throw MomentError.NameValidationError
+        }
+    }
     
 }
