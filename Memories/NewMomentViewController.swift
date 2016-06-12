@@ -12,9 +12,10 @@ class NewMomentViewController: UIViewController, UITextFieldDelegate, CLLocation
     @IBOutlet weak var nameTextField: UITextField! { didSet { nameTextField.delegate = self } }
     @IBOutlet weak var descriptionTextField: UITextView!
 
-    
-    // TODO so okay? anfangs noch nicht gesetzt. für save() 
     var timeline: Timeline?
+    var pickedPhotoUrl: String?
+    var pickedContact: String?
+    
     
     private var locationManager: CLLocationManager!
     
@@ -28,40 +29,11 @@ class NewMomentViewController: UIViewController, UITextFieldDelegate, CLLocation
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: #selector(save(_:)))
         
         initLocationManager()
-
-        //initContacts()
-    }
-
-    // TODO prüfen ob benötigt. was passiert, wenn der Benutzer den Zugriff nicht erlaubt?
-    private func initContacts() {
-        // TODO: var contactStore = CNContactStore()
-        let authorizationStatus = CNContactStore.authorizationStatusForEntityType(CNEntityType.Contacts)
-        
-        
-        // TODO deprecated in iOS 9.0, stattdessen: CNContactStore
-//        let authorizationStatus = ABAddressBookGetAuthorizationStatus()
-        switch authorizationStatus {
-        case .Denied, .Restricted:
-            //1
-            print("Denied")
-        case .Authorized:
-            //2
-            print("Authorized")
-        case .NotDetermined:
-            //3
-            print("Not Determined")
-        }
-
     }
     
     @IBAction func showContactsAction() {
         let contactPickerViewController = CNContactPickerViewController()
-        
-        // TODO predicates benötigt?
-        // contactPickerViewController.predicateForEnablingContact = NSPredicate(format: "birthday != nil")
-        
         contactPickerViewController.delegate = self
-        
         presentViewController(contactPickerViewController, animated: true, completion: nil)
     }
 
@@ -89,20 +61,17 @@ class NewMomentViewController: UIViewController, UITextFieldDelegate, CLLocation
         if image == nil {
             image = info[UIImagePickerControllerOriginalImage] as? UIImage
         }
-        let imageUrl = info[UIImagePickerControllerReferenceURL] as? NSURL
-        print("image url: \(imageUrl)")
-        if imageUrl != nil {
-            getUIImagefromAsseturl(imageUrl!)
-        }
+        self.testImage.image = image
+        self.testImage.contentMode = .ScaleAspectFit
         
-        // TODO mit dem Image etwas machen (in Entität speichern, anzeigen, ...?)
-        // https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIKitFunctionReference/index.html#//apple_ref/c/func/UIImageWriteToSavedPhotosAlbum
-        // http://www.codingexplorer.com/choosing-images-with-uiimagepickercontroller-in-swift/
-        // unter einem best. Pfad abspeichern http://stackoverflow.com/questions/28255789/getting-url-of-uiimage-selected-from-uiimagepickercontroller
-        print("image picked: \(image.debugDescription)")
+        let imageUrl = info[UIImagePickerControllerReferenceURL] as? NSURL
+        print("image url: \(imageUrl?.absoluteString)")
+        pickedPhotoUrl = imageUrl?.absoluteString
+        
         dismissViewControllerAnimated(true, completion: nil)
     }
     
+    // TODO diesen Code in Moment Details und auch in Moments-Tabelle
     func getUIImagefromAsseturl (url: NSURL) {
         let authorization = PHPhotoLibrary.authorizationStatus()
         print("photo library auth: \(authorization.rawValue)")
