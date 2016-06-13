@@ -6,21 +6,23 @@ class MomentsTableViewController: UIViewController, UITableViewDataSource, UITab
     
     var timeline: Timeline? {
         didSet {
-            print("MomentsTableViewController - timeline didSet")
             if timeline != nil {
                 moments = timeline!.momentsArray
             }
         }
     }
     
-    var tableView: UITableView! {
+    @IBOutlet weak var tableView: UITableView!{
         didSet {
-            // TODO max. tableView.rowHeight?            
+            tableView.delegate = self
+            tableView.dataSource = self
+            
+            // TODO max. tableView.rowHeight?
             tableView.estimatedRowHeight = 150
-            tableView.rowHeight = UITableViewAutomaticDimension;
+            tableView.rowHeight = UITableViewAutomaticDimension
         }
     }
-    
+
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         print("MomentsTableViewController - viewWillAppear")
