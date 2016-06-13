@@ -10,6 +10,7 @@ class MomentDao : BaseDao {
 
     
     typealias PersistMomentResponse = (moment: Moment?, error: NSError?)
+    typealias DeleteMomentResponse = (success: Bool, error: NSError?)
     
     func findAll(forTimeline timeline: Timeline) -> [Moment]? {
         let fetchRequest = NSFetchRequest(entityName: Moment.EntityName)
@@ -23,6 +24,20 @@ class MomentDao : BaseDao {
         } catch let error as NSError {
             print("Could not fetch \(error), \(error.userInfo)")
             return nil
+        }
+    }
+    
+    func delete(moment: Moment) -> DeleteMomentResponse {
+        print("Deleting moment.")
+        managedContext.deleteObject(moment)
+        
+        do {
+            try managedContext.save()
+            return(true, nil)
+            
+        } catch let error as NSError  {
+            print("Could not delete moment: \(error), \(error.userInfo)")
+            return(false, error)
         }
     }
     
@@ -48,7 +63,7 @@ class MomentDao : BaseDao {
             return(moment, nil)
             
         } catch let error as NSError  {
-            print("Could not save Moment: \(error), \(error.userInfo)")
+            print("Could not save moment: \(error), \(error.userInfo)")
             return(nil, error)
         }
     }

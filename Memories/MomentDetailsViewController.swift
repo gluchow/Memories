@@ -9,6 +9,8 @@ class MomentDetailsViewController: UIViewController {
         }
     }
     
+    let momentDao = MomentDao()
+    
     @IBOutlet weak var nameLabelField: UILabel!
     @IBOutlet weak var descriptionLabelField: UILabel!
     @IBOutlet weak var creationDateLabelField: UILabel!
@@ -22,11 +24,8 @@ class MomentDetailsViewController: UIViewController {
     @IBOutlet weak var locationNameLabelField: UILabel!
     
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // TODO: Evtl. Nachladen aller benötigter Details
         print("MomentDetailsViewController viewDidLoad()... moment: \(moment)")
         updateUI()
     }
@@ -58,6 +57,21 @@ class MomentDetailsViewController: UIViewController {
         }
     }
 
+    @IBAction func deleteMoment(sender: UIBarButtonItem) {
+        if moment != nil {
+            showWarningAlert("Do you really want to delete this moment?", actionHandler: { (action: UIAlertAction!) in
+                let response = self.momentDao.delete(self.moment!)
+                if let error = response.error {
+                    self.showErrorMessage("Moment could not be deleted. \(error.domain). Error code: \(error.code)")
+                }
+                
+                self.navigationController?.popViewControllerAnimated(true)
+            })
+        }
+        
+    }
+    
+    
     /*
     // MARK: - Navigation
 
