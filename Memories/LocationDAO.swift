@@ -7,7 +7,7 @@ class LocationDAO: BaseDao {
         return createEntity(forName: Location.EntityName) as! Location
     }
     
-    func createNewWeatherEntity(withLatitude lat: Double, andLongitude long: Double) -> Location {
+    func createNewLocationEntity(withLatitude lat: Double, andLongitude long: Double) -> Location {
         let contact = createNewEmptyWeatherEntity()
         contact.latitude = lat
         contact.longitude = long

@@ -8,8 +8,10 @@
         <relationship name="moment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Moment" inverseName="location" inverseEntity="Moment" syncable="YES"/>
     </entity>
     <entity name="Moment" representedClassName=".Moment" syncable="YES">
+        <attribute name="contacts" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="creationDate" attributeType="Date" syncable="YES"/>
         <attribute name="descriptiontext" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="imageUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="moment" inverseEntity="Location" syncable="YES"/>
         <relationship name="timeline" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Timeline" inverseName="moments" inverseEntity="Timeline" syncable="YES"/>
@@ -31,9 +33,9 @@
         <relationship name="moment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Moment" inverseName="weather" inverseEntity="Moment" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Moment" positionX="79" positionY="29" width="128" height="135"/>
+        <element name="Location" positionX="-378" positionY="126" width="128" height="120"/>
+        <element name="Moment" positionX="79" positionY="29" width="128" height="165"/>
         <element name="Timeline" positionX="-587" positionY="72" width="128" height="90"/>
         <element name="Weather" positionX="-378" positionY="81" width="128" height="165"/>
-        <element name="Location" positionX="-378" positionY="126" width="128" height="120"/>
     </elements>
 </model>
