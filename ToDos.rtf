@@ -17,16 +17,16 @@
 \
 \pard\tx220\tx720\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\li720\fi-720\pardirnatural\partightenfactor0
 \ls1\ilvl0
-\b \cf0 \ul \ulc0 Offene Punkte
+\b \cf0 \ul Offene Punkte
 \b0 \ulnone \
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 \cf0 - Moment Details verbessern (statische Tabelle)\
 - Moment erstellen / bearbeiten verbessern (Wetterdaten und aktuelle Position weiterhin nicht anbieten, auch nicht beim Bearbeiten - da nicht editierbar).\
-- Moment l\'f6schen\
-- Timeline l\'f6schen\
+- Moment Cell verbessern\
 - Moment bearbeiten (Wiederverwendung von \'84neuen Moment erstellen\'93)\
 - Erstellen des Core Data Contexts anpassen (eigene Fehlermeldung) in AppDelegate\
 - Karte mit dem Moment anzeigen (wenn Location ermittelt werden konnte; beide F\'e4lle testen)\
+- Dao als singleton - shared instance?\
 - iCloud Sync (Core Data)\
 - Optional: GenericDao
 \f1\fs22 \CocoaLigature0 \
@@ -55,7 +55,9 @@ There are two important points to the Swift 2 error handling model: exhaustivene
 	* View/Controller: Moment erstellen\
 - DAO f\'fcr Core Data Zugriff pro Modell\
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
-\cf0 - Validierung des Moment-Namens (min. 3 Zeichen)\
+\cf0 - Moment l\'f6schen\
+- Timeline l\'f6schen\
+- Validierung des Moment-Namens (min. 3 Zeichen)\
 - Entscheidung: L\'f6schen eines Moments -> Bild auch? \'97> nein, das Bild bleibt\
 - Bild aufnehmen bzw. ausw\'e4hlen und im Moment speichern (Asset Link / lokale Image Library)\
 - Wetter Service Aufruf (info.plist angepasst f\'fcr HTTP Zugriff)\
@@ -164,8 +166,9 @@ AddressBook ({\field{\*\fldinst{HYPERLINK "https://www.raywenderlich.com/97936/a
 \pard\tx529\pardeftab529\pardirnatural\partightenfactor0
 
 \f0\fs24 \cf0 \CocoaLigature1 \
+\pard\tx529\pardeftab529\pardirnatural\partightenfactor0
 
-\f1\fs22 \CocoaLigature0     \cf5 // deprecated\
+\f1\fs22 \cf0 \CocoaLigature0     \cf5 // deprecated\
 \cf0         \cf6 func\cf0  getUIImagefromAsseturl (url: \cf7 NSURL\cf0 ) \{\
             \cf6 let\cf0  asset = \cf7 ALAssetsLibrary\cf0 ()\
             asset.\cf8 assetForURL\cf0 (url, resultBlock: \{ asset \cf6 in\cf0 \
