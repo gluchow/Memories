@@ -9,7 +9,7 @@ class MomentDetailsViewController: UIViewController {
         }
     }
     
-    let momentDao = MomentDao()
+    private let momentDao = MomentDao()
     
     @IBOutlet weak var nameLabelField: UILabel!
     @IBOutlet weak var descriptionLabelField: UILabel!

@@ -4,6 +4,8 @@ import CoreData
 // TODO oder über extension für Timeline?
 class TimelineDao: BaseDao {
     
+    typealias DeleteTimelineResponse = (success: Bool, error: NSError?)
+
     func findAll() -> [Timeline]? {
         let fetchRequest = NSFetchRequest(entityName: Timeline.EntityName)
         
@@ -20,6 +22,20 @@ class TimelineDao: BaseDao {
         } catch let error as NSError {
             print("Could not fetch \(error), \(error.userInfo)")
             return nil
+        }
+    }
+    
+    func delete(timeline: Timeline) -> DeleteTimelineResponse {
+        print("Deleting timeline.")
+        managedContext.deleteObject(timeline)
+        
+        do {
+            try managedContext.save()
+            return(true, nil)
+            
+        } catch let error as NSError  {
+            print("Could not delete timeline: \(error), \(error.userInfo)")
+            return(false, error)
         }
     }
     

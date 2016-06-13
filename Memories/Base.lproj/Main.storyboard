@@ -64,8 +64,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RNu-FD-LkX">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="F3y-yp-krE"/>
+                                    <barButtonItem systemItem="trash" id="BDz-0C-a6c">
+                                        <connections>
+                                            <action selector="deleteTimeline:" destination="7UG-So-z7b" id="n6D-YC-xZe"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oVE-R4-znh">
-                                <rect key="frame" x="0.0" y="59" width="600" height="505"/>
+                                <rect key="frame" x="0.0" y="59" width="600" height="497"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Moment Cell" rowHeight="140" id="NJx-ub-4Js" customClass="MomentTableViewCell" customModule="Memories" customModuleProvider="target">
@@ -116,19 +127,12 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RNu-FD-LkX">
-                                <rect key="frame" x="0.0" y="564" width="600" height="44"/>
-                                <items>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="F3y-yp-krE"/>
-                                    <barButtonItem systemItem="trash" id="BDz-0C-a6c"/>
-                                </items>
-                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="oVE-R4-znh" secondAttribute="trailing" constant="-20" id="1YU-U3-hYh"/>
                             <constraint firstItem="RNu-FD-LkX" firstAttribute="leading" secondItem="bCw-1M-nLh" secondAttribute="leadingMargin" constant="-20" id="AmC-gH-0HV"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="RNu-FD-LkX" secondAttribute="bottom" constant="-8" id="BWu-gh-dJk"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="RNu-FD-LkX" secondAttribute="bottom" id="BWu-gh-dJk"/>
                             <constraint firstItem="oVE-R4-znh" firstAttribute="leading" secondItem="bCw-1M-nLh" secondAttribute="leadingMargin" constant="-20" id="a72-Bb-NoM"/>
                             <constraint firstItem="oVE-R4-znh" firstAttribute="top" secondItem="bCw-1M-nLh" secondAttribute="topMargin" constant="59" id="bSt-kp-wLm"/>
                             <constraint firstItem="RNu-FD-LkX" firstAttribute="top" secondItem="oVE-R4-znh" secondAttribute="bottom" id="lf7-89-DB7"/>

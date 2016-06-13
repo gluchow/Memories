@@ -13,7 +13,7 @@
         <attribute name="descriptiontext" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="imageUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
-        <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="moment" inverseEntity="Location" syncable="YES"/>
+        <relationship name="location" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Location" inverseName="moment" inverseEntity="Location" syncable="YES"/>
         <relationship name="timeline" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Timeline" inverseName="moments" inverseEntity="Timeline" syncable="YES"/>
         <relationship name="weather" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Weather" inverseName="moment" inverseEntity="Weather" syncable="YES"/>
     </entity>

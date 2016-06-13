@@ -4,6 +4,8 @@ class MomentsTableViewController: UIViewController, UITableViewDataSource, UITab
     
     private var moments = [Moment]()
     
+    private let timelineDao = TimelineDao()
+    
     var timeline: Timeline? {
         didSet {
             if timeline != nil {
@@ -61,6 +63,19 @@ class MomentsTableViewController: UIViewController, UITableViewDataSource, UITab
             
         }
        
+    }
+    
+    @IBAction func deleteTimeline(sender: UIBarButtonItem) {
+        if timeline != nil {
+            showWarningAlert("Do you really want to delete this timeline with all moments?", actionHandler: { (action: UIAlertAction!) in
+                let response = self.timelineDao.delete(self.timeline!)
+                if let error = response.error {
+                    self.showErrorMessage("Timeline could not be deleted. \(error.domain). Error code: \(error.code)")
+                }
+                
+                self.navigationController?.popViewControllerAnimated(true)
+            })
+        }
     }
     
     // ------------------------------------------------------------------------------------------------------
