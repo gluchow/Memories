@@ -4,8 +4,6 @@ import CoreLocation
 import MobileCoreServices
 import Contacts
 import ContactsUI
-import Photos
-import AssetsLibrary
 
 class NewMomentViewController: UIViewController, UITextFieldDelegate, CLLocationManagerDelegate,
         UIImagePickerControllerDelegate, UINavigationControllerDelegate, CNContactPickerDelegate {

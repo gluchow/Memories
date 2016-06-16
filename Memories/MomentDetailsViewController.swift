@@ -1,4 +1,6 @@
 import UIKit
+import Photos
+import AssetsLibrary
 
 class MomentDetailsViewController: UIViewController {
 
@@ -17,11 +19,12 @@ class MomentDetailsViewController: UIViewController {
     
     @IBOutlet weak var weatherTemperatureLabelField: UILabel!
     @IBOutlet weak var weatherDescriptionLabelField: UILabel!
-    @IBOutlet weak var latitudeLabelField: UILabel!
-    @IBOutlet weak var longitudeLabelField: UILabel!
+    @IBOutlet weak var weatherImageView: UIImageView!
     
-    @IBOutlet weak var countryLabelField: UILabel!
-    @IBOutlet weak var locationNameLabelField: UILabel!
+    @IBOutlet weak var locationLabelField: UILabel!
+    @IBOutlet weak var participantsLabelField: UILabel!
+    
+    @IBOutlet weak var momentImageView: UIImageView!
     
     
     override func viewDidLoad() {
@@ -37,23 +40,18 @@ class MomentDetailsViewController: UIViewController {
         creationDateLabelField?.text = nil
         weatherDescriptionLabelField?.text = nil
         weatherTemperatureLabelField?.text = nil
-        latitudeLabelField?.text = nil
-        longitudeLabelField?.text = nil
-        countryLabelField?.text = nil
-        locationNameLabelField?.text = nil
+        locationLabelField?.text = nil
+        participantsLabelField?.text = nil
         
         if let moment = self.moment {
             nameLabelField?.text = moment.name
             descriptionLabelField?.text = moment.descriptiontext
             creationDateLabelField?.text = moment.creationDate?.description // TODO Formatter
-            weatherDescriptionLabelField?.text = moment.weather?.descriptionText
-            weatherTemperatureLabelField?.text = moment.weather?.temperature?.stringValue
-            latitudeLabelField?.text = moment.location?.latitude?.stringValue
-            longitudeLabelField?.text = moment.location?.longitude?.stringValue
             
-            // TODO über Wetter-Service lassen? anderen Service einbinden zum Ermitteln des Ortnamens?
-            countryLabelField?.text = moment.weather?.country
-            locationNameLabelField?.text = moment.weather?.locationName
+            updateWeatherDetails()
+            updateLocation()
+            updateMomentImage()
+            updateParticipants()
         }
     }
 
@@ -71,15 +69,63 @@ class MomentDetailsViewController: UIViewController {
         
     }
     
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    private func updateLocation() {
+        var locationString = ""
+        
+        if let locationName = moment?.weather?.locationName {
+            locationString.appendContentsOf(locationName)
+        }
+        
+        if let country = moment?.weather?.country {
+            if locationString.characters.count > 0 {
+                locationString.appendContentsOf(", ")
+            }
+            locationString.appendContentsOf(country)
+        }
+        
+        locationLabelField?.text =  locationString
     }
-    */
+    
+    private func updateWeatherDetails() {
+        if let descriptionText = moment?.weather?.descriptionText {
+            weatherDescriptionLabelField?.text = descriptionText
+        }
+        
+        if let temperature = moment?.weather?.temperature {
+            weatherTemperatureLabelField?.text = temperature.stringValue // TODO Formatter für °C
+        }
+    }
+    
+    private func updateParticipants() {
+        if let contacts = moment?.contacts {
+            if contacts.isEmpty {
+                participantsLabelField?.text = "(no participants)"
+                
+            } else {
+                participantsLabelField?.text = contacts.joinWithSeparator(", ")
+            }
+        }
+    }
+    
+    private func updateMomentImage() {
+        if let urlString = moment?.imageUrl {
+            if let url = NSURL(string: urlString) {
+                let authorization = PHPhotoLibrary.authorizationStatus()
+                print("photo library auth: \(authorization.rawValue)")
+                
+                let asset = PHAsset.fetchAssetsWithALAssetURLs([url], options: nil).firstObject as! PHAsset
+                let fullTargetSize = CGSizeMake(-1, -1)
+                let options = PHImageRequestOptions()
+                
+                PHImageManager.defaultManager().requestImageForAsset(asset, targetSize: fullTargetSize, contentMode: PHImageContentMode.AspectFit, options: options, resultHandler: {
+                    (result, info) in
+                    print("fetched image with manager: \(result)")
+                    self.momentImageView?.image = result
+                    self.momentImageView?.contentMode = .ScaleAspectFit
+                })
+            }
+        }
+        
+    }
 
 }
