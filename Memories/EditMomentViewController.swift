@@ -5,14 +5,18 @@ import MobileCoreServices
 import Contacts
 import ContactsUI
 
-class NewMomentViewController: UIViewController, UITextFieldDelegate, CLLocationManagerDelegate,
+class EditMomentViewController: UIViewController, UITextFieldDelegate, CLLocationManagerDelegate,
         UIImagePickerControllerDelegate, UINavigationControllerDelegate, CNContactPickerDelegate {
     
     @IBOutlet weak var nameTextField: UITextField! { didSet { nameTextField.delegate = self } }
     @IBOutlet weak var descriptionTextField: UITextView!
 
     var timeline: Timeline?
-    var moment: Moment? // TODO beim Einstieg für Neuanlage auf nil setzen
+    var moment: Moment? {
+        didSet {
+            updateUI()
+        }
+    }
     var pickedImageUrl: String?
     var pickedContacts = [String]()
     
@@ -31,12 +35,34 @@ class NewMomentViewController: UIViewController, UITextFieldDelegate, CLLocation
         nameTextField.becomeFirstResponder()
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: #selector(save(_:)))
         
+        updateUI()
+        
         initLocationManager()
+    }
+    
+    private func updateUI() {
+        if moment != nil {
+            nameTextField?.text = moment?.name
+            descriptionTextField?.text = moment?.descriptiontext
+            
+            // TODO load image from asset -- extension needed
+
+            
+        }
     }
 
     func save(sender: AnyObject) {
+        if moment != nil { // Moment exists already because it is being edited
+            
+            persistMomentAndCloseViewOnSuccess()
+            
+        } else {
+            createNewMomentEntity()
+        }
+    }
+    
+    private func createNewMomentEntity() {
         do {
-            // TODO Unterscheidung beim Editieren eines Moments -> nil?
             moment = try self.momentDao.createNewMomentEntity(forName: self.nameTextField.text!, withinTimeline: self.timeline!)
             moment?.descriptiontext = self.descriptionTextField.text
             
@@ -52,7 +78,6 @@ class NewMomentViewController: UIViewController, UITextFieldDelegate, CLLocation
         } catch {
             showErrorMessage("Could not create a new moment. Unexpected error occurred.")
         }
-           
     }
 
     private func persistMomentWithWeatherAndCloseViewOnSuccess(currentLocation location: CLLocation) {
@@ -60,6 +85,7 @@ class NewMomentViewController: UIViewController, UITextFieldDelegate, CLLocation
         let latitude = location.coordinate.latitude
         let longitude = location.coordinate.longitude
         
+        // Async fetch of weather data
         WeatherService.sharedInstance.fetchWeather(forLatitude: latitude, andLongitude: longitude) {
             callback in
             
@@ -71,7 +97,6 @@ class NewMomentViewController: UIViewController, UITextFieldDelegate, CLLocation
             callback.weather?.moment = self.moment
             
             self.fetchLocationDataAndPersist(forLatitude: latitude, andLongitude: longitude)
-
         }
     }
     
@@ -85,27 +110,35 @@ class NewMomentViewController: UIViewController, UITextFieldDelegate, CLLocation
         let location = CLLocation(latitude: latitude, longitude: longitude)
         print(location)
         
+        // TODO auslagern in service
+        // Async fetch location name for given lat/lon
         CLGeocoder().reverseGeocodeLocation(location) {
             (placemarks, error) -> Void in
             print(location)
             
             if error != nil {
                 print("Error in reverse geocoder: " + error!.localizedDescription)
-                return
             }
             
             if placemarks!.count > 0 {
-                let pm = placemarks![0]
+                let placemark = placemarks![0]
                 print("Reverse geocoder - Placemark gefunden: ")
-                print(pm.country)
-                print(pm.locality)
+                print(placemark.country)
+                print(placemark.locality)
+                
+                // Update location entity
+                self.moment?.location?.city = placemark.locality
+                self.moment?.location?.country = placemark.country
+                self.moment?.location?.moment = self.moment
+                
             }
             else {
                 print("No Data from reverse geocoder received.")
             }
+            
+            self.persistMomentAndCloseViewOnSuccess()
         }
-        
-        self.persistMomentAndCloseViewOnSuccess()
+
     }
     
     private func persistMomentAndCloseViewOnSuccess() {
@@ -113,6 +146,8 @@ class NewMomentViewController: UIViewController, UITextFieldDelegate, CLLocation
             return
         }
         
+        moment!.name = nameTextField.text
+        moment!.descriptiontext = descriptionTextField.text
         moment!.contacts = pickedContacts
         moment!.imageUrl = pickedImageUrl
         

@@ -69,6 +69,22 @@ class MomentDetailsViewController: UIViewController {
         
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier != nil {
+            
+            switch(segue.identifier!) {
+            case Storyboard.Segue.ShowEditMoment:
+                let editMomentViewController = segue.destinationViewController as! EditMomentViewController
+                editMomentViewController.moment = moment
+          
+            default: break // nothing
+            }
+            
+        }
+        
+    }
+    
+    
     private func updateLocation() {
         var locationString = ""
         

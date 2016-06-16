@@ -26,7 +26,7 @@
 		8476FD2D1CE932270056E899 /* BaseDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8476FD2C1CE932270056E899 /* BaseDao.swift */; };
 		8476FD2F1CE93A0B0056E899 /* MomentsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8476FD2E1CE93A0B0056E899 /* MomentsTableViewController.swift */; };
 		8476FD311CE93FED0056E899 /* MomentDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8476FD301CE93FED0056E899 /* MomentDao.swift */; };
-		8476FD331CE941BF0056E899 /* NewMomentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8476FD321CE941BF0056E899 /* NewMomentViewController.swift */; };
+		8476FD331CE941BF0056E899 /* EditMomentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8476FD321CE941BF0056E899 /* EditMomentViewController.swift */; };
 		848A7E911CE8BA700052EECD /* NewTimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A7E901CE8BA700052EECD /* NewTimelineViewController.swift */; };
 		84A01E4F1CF3246800CA992A /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A01E4E1CF3246800CA992A /* WeatherService.swift */; };
 		84BA3A4A1CF1BCBF00CC490B /* UIViewController_Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BA3A491CF1BCBF00CC490B /* UIViewController_Alerts.swift */; };
@@ -62,7 +62,7 @@
 		8476FD2C1CE932270056E899 /* BaseDao.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseDao.swift; sourceTree = "<group>"; };
 		8476FD2E1CE93A0B0056E899 /* MomentsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MomentsTableViewController.swift; sourceTree = "<group>"; };
 		8476FD301CE93FED0056E899 /* MomentDao.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MomentDao.swift; sourceTree = "<group>"; };
-		8476FD321CE941BF0056E899 /* NewMomentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMomentViewController.swift; sourceTree = "<group>"; };
+		8476FD321CE941BF0056E899 /* EditMomentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditMomentViewController.swift; sourceTree = "<group>"; };
 		848A7E901CE8BA700052EECD /* NewTimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTimelineViewController.swift; sourceTree = "<group>"; };
 		84A01E4E1CF3246800CA992A /* WeatherService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
 		84BA3A491CF1BCBF00CC490B /* UIViewController_Alerts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewController_Alerts.swift; sourceTree = "<group>"; };
@@ -209,7 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				8476FD2E1CE93A0B0056E899 /* MomentsTableViewController.swift */,
-				8476FD321CE941BF0056E899 /* NewMomentViewController.swift */,
+				8476FD321CE941BF0056E899 /* EditMomentViewController.swift */,
 				84BA3A4D1CF1D63800CC490B /* MomentDetailsViewController.swift */,
 			);
 			name = moment;
@@ -377,7 +377,7 @@
 				8415AFA11D0D823200BB6B62 /* Location.swift in Sources */,
 				8415AFA01D0D823200BB6B62 /* Location+CoreDataProperties.swift in Sources */,
 				8476FD2D1CE932270056E899 /* BaseDao.swift in Sources */,
-				8476FD331CE941BF0056E899 /* NewMomentViewController.swift in Sources */,
+				8476FD331CE941BF0056E899 /* EditMomentViewController.swift in Sources */,
 				84A01E4F1CF3246800CA992A /* WeatherService.swift in Sources */,
 				8476FD2F1CE93A0B0056E899 /* MomentsTableViewController.swift in Sources */,
 				84F70B2C1CF70427004CC6DA /* Weather+CoreDataProperties.swift in Sources */,

@@ -7,6 +7,7 @@ struct Storyboard {
         static let ShowMoments = "Show Moments"
         static let ShowNewMoment = "Show New Moment"
         static let ShowMomentDetails = "Show Moment Details"
+        static let ShowEditMoment = "Show Edit Moment"
     }
     
     struct Identifier {

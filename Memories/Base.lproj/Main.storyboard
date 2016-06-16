@@ -181,7 +181,11 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="44"/>
                                 <items>
                                     <navigationItem title="Moment details" id="JWu-8Z-tL4">
-                                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="sEw-4r-9dK"/>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="sEw-4r-9dK">
+                                            <connections>
+                                                <segue destination="Win-HM-3Mu" kind="show" identifier="Show Edit Moment" id="9lR-AW-zWf"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -350,10 +354,10 @@
             </objects>
             <point key="canvasLocation" x="986" y="1244"/>
         </scene>
-        <!--New Moment-->
+        <!--New / Edit Moment-->
         <scene sceneID="0C5-Fl-vtm">
             <objects>
-                <viewController id="Win-HM-3Mu" customClass="NewMomentViewController" customModule="Memories" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Win-HM-3Mu" customClass="EditMomentViewController" customModule="Memories" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="MGc-HT-BGf"/>
                         <viewControllerLayoutGuide type="bottom" id="RZQ-Rw-QYZ"/>
@@ -472,7 +476,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="New Moment" id="2xL-6E-lRx"/>
+                    <navigationItem key="navigationItem" title="New / Edit Moment" id="2xL-6E-lRx"/>
                     <connections>
                         <outlet property="descriptionTextField" destination="K1k-Rs-NhY" id="6KR-oA-Qwr"/>
                         <outlet property="nameTextField" destination="zRo-yd-qkk" id="1Bf-PK-dt2"/>
@@ -481,7 +485,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FB4-D5-nUN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1778" y="1244"/>
+            <point key="canvasLocation" x="1803" y="1244"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="2g2-Xq-pA1">
@@ -506,4 +510,7 @@
         <image name="camera" width="512" height="512"/>
         <image name="missing-weather" width="512" height="512"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="9lR-AW-zWf"/>
+    </inferredMetricsTieBreakers>
 </document>
