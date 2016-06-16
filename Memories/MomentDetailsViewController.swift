@@ -77,6 +77,9 @@ class MomentDetailsViewController: UIViewController {
                 let editMomentViewController = segue.destinationViewController as! EditMomentViewController
                 editMomentViewController.moment = moment
           
+            case Storyboard.Segue.ShowMomentOnMap:
+                let momentMapViewController = segue.destinationViewController as! MomentMapViewController
+                momentMapViewController.moment = moment
             default: break // nothing
             }
             

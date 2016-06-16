@@ -49,8 +49,8 @@ class MomentsTableViewController: UIViewController, UITableViewDataSource, UITab
           
             switch(segue.identifier!) {
             case Storyboard.Segue.ShowNewMoment:
-                let newMomentViewController = segue.destinationViewController as! EditMomentViewController
-                newMomentViewController.timeline = timeline
+                let momentViewController = segue.destinationViewController as! EditMomentViewController
+                momentViewController.timeline = timeline
                 
             case Storyboard.Segue.ShowMomentDetails:
                 let momentDetailsViewController = segue.destinationViewController as! MomentDetailsViewController
