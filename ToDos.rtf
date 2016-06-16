@@ -23,6 +23,8 @@
 \cf0 - Moment Details verbessern (statische Tabelle)\
 - Moment erstellen / bearbeiten verbessern (Wetterdaten und aktuelle Position weiterhin nicht anbieten, auch nicht beim Bearbeiten - da nicht editierbar).\
 - Moment Cell verbessern\
+- Timeline Name ist eindeutig - Meldung beim Erstellen einer gleichnamigen Timeline\
+- Timeline Beschreibung\
 - Moment bearbeiten (Wiederverwendung von \'84neuen Moment erstellen\'93)\
 - Erstellen des Core Data Contexts anpassen (eigene Fehlermeldung) in AppDelegate\
 - Karte mit dem Moment anzeigen (wenn Location ermittelt werden konnte; beide F\'e4lle testen)\
@@ -37,7 +39,8 @@
 - Optional: Startseite / + evtl. Logo\
 - Optional: Weitere Bibliotheken einbinden zum Ausprobieren - evtl. f\'fcr async\
 - Optional: eigenen zentralen Logger mit einfachem print() + Klassenname des Nutzers vor dem Log. Timestamp aktuell nicht ben\'f6tigt.\
-\
+- Optional: Einstellungen der App -> Momente chronologisch absteigend oder aufsteigend? -> NSUserDefaults\
+- Optional: ScrollView f\'fcr das Bild in Moment-Details\
 \
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 
@@ -54,8 +57,7 @@ There are two important points to the Swift 2 error handling model: exhaustivene
 	* View/Controller: Moments anzeigen\
 	* View/Controller: Moment erstellen\
 - DAO f\'fcr Core Data Zugriff pro Modell\
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
-\cf0 - Moment l\'f6schen\
+- Moment l\'f6schen\
 - Timeline l\'f6schen\
 - Validierung des Moment-Namens (min. 3 Zeichen)\
 - Entscheidung: L\'f6schen eines Moments -> Bild auch? \'97> nein, das Bild bleibt\
@@ -87,6 +89,7 @@ AddressBook ({\field{\*\fldinst{HYPERLINK "https://www.raywenderlich.com/97936/a
 - Was soll dem Benutzer im Fehlerfall gezeigt werden (NSError: domain, code, \'85)\
 - Aufteilung der Controller nach Zust\'e4ndigkeiten? (Geo, Photo, Camera, ?)\
 - Validieren von Eingaben (vor dem Erstellen eines ManagedObjects / verwerfen / \'85?)\
+- Navigation Controller vor allen MVC ben\'f6tigt? Vermutlich reicht der eine beim Einstieg.\
 \
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 
