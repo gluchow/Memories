@@ -47,7 +47,6 @@ class WeatherService: NSObject {
                 print("Request weather data - response status code: \(response.response?.statusCode)")
                 
                 // Prüfe ob Wetterdaten auswertbar sind:
-                
                 if response.result.error != nil {
                     callback(weather: nil, error: NSError(domain: "Fehler beim Aufruf der Wetterdaten.", code: response.response!.statusCode, userInfo: nil))
                     return
@@ -75,7 +74,6 @@ class WeatherService: NSObject {
         let weatherDao = WeatherDao()
         let weatherEntity = weatherDao.createNewWeatherEntity()
         
-        // TODO nachfragen: ohne Konstanten aus meiner Sicht einfacher und direkt nachvollziehbar.
         if let weatherJson = result["weather"] {
             weatherEntity.descriptionText = JSON(weatherJson)[0]["description"].stringValue
         }
