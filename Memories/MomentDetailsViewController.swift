@@ -1,9 +1,11 @@
 import UIKit
 import Photos
 import AssetsLibrary
+import CoreData
 
-class MomentDetailsViewController: UIViewController {
-
+class MomentDetailsViewController: UIViewController, NSFetchedResultsControllerDelegate {
+    private let momentDao = MomentDao()
+    
     var moment: Moment? {
         didSet {
             print("MomentDetailsViewController moment didSet... moment: \(moment)")
@@ -11,7 +13,18 @@ class MomentDetailsViewController: UIViewController {
         }
     }
     
-    private let momentDao = MomentDao()
+    lazy var fetchedResultsController: NSFetchedResultsController = {
+        let fetchRequest = NSFetchRequest(entityName: Moment.EntityName)
+        let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+
+        let fetchedResultsController = NSFetchedResultsController(
+            fetchRequest: fetchRequest, managedObjectContext: self.momentDao.managedContext, sectionNameKeyPath: nil, cacheName: nil)
+
+        fetchedResultsController.delegate = self
+        
+        return fetchedResultsController
+    }()
     
     @IBOutlet weak var nameLabelField: UILabel!
     @IBOutlet weak var descriptionLabelField: UILabel!
@@ -26,15 +39,39 @@ class MomentDetailsViewController: UIViewController {
     
     @IBOutlet weak var momentImageView: UIImageView!
     
+    @IBOutlet weak var mapButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print("MomentDetailsViewController viewDidLoad()... moment: \(moment)")
-        updateUI()
+        
+        // TODO evtl. updateUI() aufrufen. allerdings aktuell nicht nötig...
+        
+        // Performs fetch. Initializes fetchedResultsController and registering as delegate.
+        do {
+            try self.fetchedResultsController.performFetch()
+        } catch {
+            let fetchError = error as NSError
+            print("\(fetchError), \(fetchError.userInfo)")
+        }
+    }
+   
+    private func updateUI() {
+        resetFields()
+
+        if let moment = self.moment {
+            nameLabelField?.text = moment.name
+            descriptionLabelField?.text = moment.descriptiontext
+            creationDateLabelField?.text = moment.creationDate?.description // TODO Formatter
+            
+            updateWeatherDetails()
+            updateMomentImage()
+            updateParticipants()
+            updateLocation()
+        }
     }
     
-    private func updateUI() {
-        // reset
+    private func resetFields() {
         nameLabelField?.text = nil
         descriptionLabelField?.text = nil
         creationDateLabelField?.text = nil
@@ -42,17 +79,7 @@ class MomentDetailsViewController: UIViewController {
         weatherTemperatureLabelField?.text = nil
         locationLabelField?.text = nil
         participantsLabelField?.text = nil
-        
-        if let moment = self.moment {
-            nameLabelField?.text = moment.name
-            descriptionLabelField?.text = moment.descriptiontext
-            creationDateLabelField?.text = moment.creationDate?.description // TODO Formatter
-            
-            updateWeatherDetails()
-            updateLocation()
-            updateMomentImage()
-            updateParticipants()
-        }
+        mapButton?.enabled = false // initially deactivated
     }
 
     @IBAction func deleteMoment(sender: UIBarButtonItem) {
@@ -87,8 +114,14 @@ class MomentDetailsViewController: UIViewController {
         
     }
     
-    
     private func updateLocation() {
+        if !self.moment!.hasCoordinates() {
+            mapButton?.enabled = false
+            locationLabelField?.text = "(no location)"
+            return
+        }
+        
+        mapButton?.enabled = true
         var locationString = ""
         
         if let locationName = moment?.weather?.locationName {
@@ -130,21 +163,32 @@ class MomentDetailsViewController: UIViewController {
         if let urlString = moment?.imageUrl {
             if let url = NSURL(string: urlString) {
                 let authorization = PHPhotoLibrary.authorizationStatus()
-                print("photo library auth: \(authorization.rawValue)")
+                print("photo library auth: \(authorization)")
                 
                 let asset = PHAsset.fetchAssetsWithALAssetURLs([url], options: nil).firstObject as! PHAsset
                 let fullTargetSize = CGSizeMake(-1, -1)
                 let options = PHImageRequestOptions()
                 
-                PHImageManager.defaultManager().requestImageForAsset(asset, targetSize: fullTargetSize, contentMode: PHImageContentMode.AspectFit, options: options, resultHandler: {
+                PHImageManager.defaultManager().requestImageForAsset(asset, targetSize: fullTargetSize, contentMode: PHImageContentMode.AspectFit, options: options) {
                     (result, info) in
                     print("fetched image with manager: \(result)")
                     self.momentImageView?.image = result
                     self.momentImageView?.contentMode = .ScaleAspectFit
-                })
+                }
             }
         }
         
+    }
+    
+    
+    // ------------------------------------------------------------------------------------------------------
+    // MARK: NSFetchedResultsControllerDelegate
+    
+    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject,
+                    atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+        print("controller ... didChangeObject ...")
+        // Moment is registred to be monitored on changes. Changed object can only be a Moment-Instance.
+        moment = anObject as? Moment
     }
 
 }

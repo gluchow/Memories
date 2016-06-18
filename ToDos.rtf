@@ -2,8 +2,7 @@
 {\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 Menlo-Regular;\f2\fmodern\fcharset0 Courier;
 \f3\fnil\fcharset0 Menlo-Bold;}
 {\colortbl;\red255\green255\blue255;\red27\green29\blue31;\red14\green0\blue0;\red247\green247\blue247;
-\red0\green116\blue0;\red170\green13\blue145;\red92\green38\blue153;\red46\green13\blue110;\red196\green26\blue22;
-\red28\green0\blue207;\red63\green110\blue116;}
+}
 {\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{hyphen\}}{\leveltext\leveltemplateid1\'01\uc0\u8259 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid1}}
 {\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}}
 \paperw11900\paperh16840\margl1440\margr1440\vieww25400\viewh17600\viewkind0
@@ -20,16 +19,16 @@
 \b \cf0 \ul Offene Punkte
 \b0 \ulnone \
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
-\cf0 - Moment Details verbessern (statische Tabelle)\
+\cf0 - Moment Details verbessern (statische Tabelle / feste UI)\
+- TODOs im Code behandeln\'85\
 - Moment erstellen / bearbeiten verbessern (Wetterdaten und aktuelle Position weiterhin nicht anbieten, auch nicht beim Bearbeiten - da nicht editierbar).\
 - Moment Cell verbessern\
 - Timeline Name ist eindeutig - Meldung beim Erstellen einer gleichnamigen Timeline\
 - Timeline Beschreibung\
-- Moment bearbeiten (Wiederverwendung von \'84neuen Moment erstellen\'93)\
 - Erstellen des Core Data Contexts anpassen (eigene Fehlermeldung) in AppDelegate\
-- Karte mit dem Moment anzeigen (wenn Location ermittelt werden konnte; beide F\'e4lle testen)\
 - Dao als singleton - shared instance?\
 - iCloud Sync (Core Data)\
+- Moment-Punkt auf der Karte: Zoom\
 - Optional: GenericDao
 \f1\fs22 \CocoaLigature0 \
 
@@ -79,8 +78,13 @@ AddressBook ({\field{\*\fldinst{HYPERLINK "https://www.raywenderlich.com/97936/a
 \f0\fs24 \cf0 \CocoaLigature1 - Foto aus Library anzeigen: Photos\
 	deprecated: 
 \f1\fs22 \CocoaLigature0 AssetsLibrary ({\field{\*\fldinst{HYPERLINK "https://www.raywenderlich.com/76285/beginning-core-image-swift"}}{\fldrslt https://www.raywenderlich.com/76285/beginning-core-image-swift}})\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 
-\f0\fs24 \CocoaLigature1 \
+\f0\fs24 \cf0 \CocoaLigature1 - Moment bearbeiten (Wiederverwendung von \'84neuen Moment erstellen\'93)\
+- Karte mit dem Moment anzeigen (wenn Location ermittelt werden konnte; beide F\'e4lle testen)\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 - Editieren eines Moments -> Moment Details aktualisieren. L\'f6sen mit NSFetchedResultsController - Monitoring der \'c4nderungen an Moment-Entit\'e4ten (CoreData).\
+\
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 
 \b \cf0 \ul Punkte zur Kl\'e4rung
@@ -90,7 +94,7 @@ AddressBook ({\field{\*\fldinst{HYPERLINK "https://www.raywenderlich.com/97936/a
 - Aufteilung der Controller nach Zust\'e4ndigkeiten? (Geo, Photo, Camera, ?)\
 - Validieren von Eingaben (vor dem Erstellen eines ManagedObjects / verwerfen / \'85?)\
 - Navigation Controller vor allen MVC ben\'f6tigt? Vermutlich reicht der eine beim Einstieg.\
-\
+- NSFetchedResultsController nur mit Tabellen?\
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 
 \f1\fs22 \cf0 \CocoaLigature0 \
@@ -141,52 +145,7 @@ AddressBook ({\field{\*\fldinst{HYPERLINK "https://www.raywenderlich.com/97936/a
 		- fehlerhafte CoreData Beschreibung - Aktualisierung nicht automatisch\
 		- Pods / Bibliotheken nicht verf\'fcgbar\
 \
-\
-
-\b \ul Code Schnipsel\
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
-
-\b0 \cf0 \ulnone \
 \pard\tx529\pardeftab529\pardirnatural\partightenfactor0
-
-\f1\fs22 \cf0 \CocoaLigature0     \
-    \cf5 // TODO diesen Code in Moment Details und auch in Moments-Tabelle\
-\cf0     \cf6 func\cf0  getUIImagefromAsseturl (url: \cf7 NSURL\cf0 ) \{\
-        \cf6 let\cf0  authorization = \cf7 PHPhotoLibrary\cf0 .\cf8 authorizationStatus\cf0 ()\
-        \cf8 print\cf0 (\cf9 "photo library auth: \cf0 \\\cf9 (\cf0 authorization.\cf7 rawValue\cf9 )"\cf0 )\
-        \
-        \cf6 let\cf0  asset = \cf7 PHAsset\cf0 .\cf8 fetchAssetsWithALAssetURLs\cf0 ([url], options: \cf6 nil\cf0 ).\cf7 firstObject\cf0  \cf6 as\cf0 ! \cf7 PHAsset\cf0 \
-        \cf6 let\cf0  fullTargetSize = \cf8 CGSizeMake\cf0 (-\cf10 1\cf0 , -\cf10 1\cf0 )\
-        \cf6 let\cf0  options = \cf7 PHImageRequestOptions\cf0 ()\
-        \
-        \cf7 PHImageManager\cf0 .\cf8 defaultManager\cf0 ().\cf8 requestImageForAsset\cf0 (asset, targetSize: fullTargetSize, contentMode: \cf7 PHImageContentMode\cf0 .\cf8 AspectFit\cf0 , options: options, resultHandler: \{\
-            (result, info) \cf6 in\cf0 \
-            \cf8 print\cf0 (\cf9 "fetched image with manager: \cf0 \\\cf9 (\cf0 result\cf9 )"\cf0 )\
-            \cf6 self\cf0 .\cf11 testImage\cf0 .\cf7 image\cf0  = result\
-            \cf6 self\cf0 .\cf11 testImage\cf0 .\cf7 contentMode\cf0  = .\cf8 ScaleAspectFit\cf0 \
-        \})\
-    \}\
-\pard\tx529\pardeftab529\pardirnatural\partightenfactor0
-
-\f0\fs24 \cf0 \CocoaLigature1 \
-\pard\tx529\pardeftab529\pardirnatural\partightenfactor0
-
-\f1\fs22 \cf0 \CocoaLigature0     \cf5 // deprecated\
-\cf0         \cf6 func\cf0  getUIImagefromAsseturl (url: \cf7 NSURL\cf0 ) \{\
-            \cf6 let\cf0  asset = \cf7 ALAssetsLibrary\cf0 ()\
-            asset.\cf8 assetForURL\cf0 (url, resultBlock: \{ asset \cf6 in\cf0 \
-                \cf6 if\cf0  \cf6 let\cf0  ast = asset \{\
-                    \cf6 let\cf0  assetRep = ast.\cf8 defaultRepresentation\cf0 ()\
-                    \cf6 let\cf0  iref = assetRep.\cf8 fullResolutionImage\cf0 ().\cf8 takeUnretainedValue\cf0 ()\
-                    \cf6 let\cf0  image = \cf7 UIImage\cf0 (CGImage: iref)\
-                    \cf8 dispatch_async\cf0 (\cf8 dispatch_get_main_queue\cf0 (), \{\
-                        \cf8 print\cf0 (\cf9 "loaded image by url: \cf0 \\\cf9 (\cf0 image\cf9 )"\cf0 )\
-                    \})\
-                \}\
-                \}, failureBlock: \{ error \cf6 in\cf0 \
-                    \cf8 print\cf0 (\cf9 "Error: \cf0 \\\cf9 (\cf0 error\cf9 )"\cf0 )\
-            \})\
-        \}
-\f0\fs24 \CocoaLigature1 \
+\cf0 \
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 \cf0 	}

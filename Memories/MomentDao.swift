@@ -6,12 +6,9 @@ enum MomentError: ErrorType {
 }
 
 class MomentDao : BaseDao {
-    
-
-    
     typealias PersistMomentResponse = (moment: Moment?, error: NSError?)
     typealias DeleteMomentResponse = (success: Bool, error: NSError?)
-    
+     
     func findAll(forTimeline timeline: Timeline) -> [Moment]? {
         let fetchRequest = NSFetchRequest(entityName: Moment.EntityName)
         fetchRequest.predicate = NSPredicate(format: "timeline == %@", timeline)

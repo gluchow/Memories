@@ -312,6 +312,7 @@
                         <outlet property="creationDateLabelField" destination="GDi-a8-nPR" id="USP-Xo-zC3"/>
                         <outlet property="descriptionLabelField" destination="CEK-8Y-Cks" id="WJh-F8-mRg"/>
                         <outlet property="locationLabelField" destination="15J-DN-2RZ" id="RPf-AV-bo1"/>
+                        <outlet property="mapButton" destination="u90-1e-pxN" id="Kad-gx-FXx"/>
                         <outlet property="momentImageView" destination="ZyD-qA-JLr" id="If9-hB-WIJ"/>
                         <outlet property="nameLabelField" destination="oE3-ta-iFe" id="bY1-eL-Ag4"/>
                         <outlet property="participantsLabelField" destination="PW0-wo-7sI" id="fnn-4x-ZUV"/>
