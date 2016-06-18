@@ -43,9 +43,9 @@ class MomentDetailsViewController: UIViewController, NSFetchedResultsControllerD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("MomentDetailsViewController viewDidLoad()... moment: \(moment)")
+        print("viewDidLoad()")
         
-        // TODO evtl. updateUI() aufrufen. allerdings aktuell nicht nötig...
+        updateUI()
         
         // Performs fetch. Initializes fetchedResultsController and registering as delegate.
         do {

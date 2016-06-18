@@ -44,10 +44,10 @@ class EditMomentViewController: UIViewController, UITextFieldDelegate, CLLocatio
         if moment != nil {
             nameTextField?.text = moment?.name
             descriptionTextField?.text = moment?.descriptiontext
-            
-            // TODO load image from asset -- extension needed
-
-            
+            pickedImageUrl = moment?.imageUrl
+            if let contacts = moment?.contacts {
+                pickedContacts = contacts
+            }
         }
     }
 
