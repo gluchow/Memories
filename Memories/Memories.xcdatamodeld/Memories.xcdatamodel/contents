@@ -19,6 +19,7 @@
     </entity>
     <entity name="Timeline" representedClassName=".Timeline" syncable="YES">
         <attribute name="creationDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="descriptiontext" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <relationship name="moments" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Moment" inverseName="timeline" inverseEntity="Moment" syncable="YES"/>
     </entity>
@@ -35,7 +36,7 @@
     <elements>
         <element name="Location" positionX="-378" positionY="126" width="128" height="120"/>
         <element name="Moment" positionX="79" positionY="29" width="128" height="165"/>
-        <element name="Timeline" positionX="-587" positionY="72" width="128" height="90"/>
+        <element name="Timeline" positionX="-587" positionY="72" width="128" height="105"/>
         <element name="Weather" positionX="-378" positionY="81" width="128" height="165"/>
     </elements>
 </model>

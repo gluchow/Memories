@@ -376,24 +376,41 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XFW-5M-PuC">
-                                <rect key="frame" x="70" y="69" width="510" height="30"/>
+                                <rect key="frame" x="117" y="69" width="463" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EzL-oH-Dc0">
+                                <rect key="frame" x="117" y="107" width="463" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x3d-7T-aXr">
+                                <rect key="frame" x="17" y="111" width="88" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="O3B-2T-XtP" firstAttribute="leading" secondItem="cmx-z5-zh2" secondAttribute="leadingMargin" constant="-3" id="42x-Qd-Fdg"/>
-                            <constraint firstItem="XFW-5M-PuC" firstAttribute="top" secondItem="Mdw-9b-I8S" secondAttribute="bottom" constant="5" id="D8N-CY-63j"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="XFW-5M-PuC" secondAttribute="trailing" id="Lus-ld-VoU"/>
-                            <constraint firstItem="XFW-5M-PuC" firstAttribute="leading" secondItem="O3B-2T-XtP" secondAttribute="trailing" constant="8" id="fUw-RK-axm"/>
-                            <constraint firstItem="O3B-2T-XtP" firstAttribute="top" secondItem="Mdw-9b-I8S" secondAttribute="bottom" constant="8" id="uGj-lK-TJs"/>
+                            <constraint firstItem="EzL-oH-Dc0" firstAttribute="leading" secondItem="x3d-7T-aXr" secondAttribute="trailing" constant="12" id="4Jp-gZ-WYc"/>
+                            <constraint firstItem="XFW-5M-PuC" firstAttribute="top" secondItem="Mdw-9b-I8S" secondAttribute="bottom" constant="5" id="HLk-vI-bNr"/>
+                            <constraint firstItem="O3B-2T-XtP" firstAttribute="top" secondItem="Mdw-9b-I8S" secondAttribute="bottom" constant="8" id="JZo-mk-tTa"/>
+                            <constraint firstItem="O3B-2T-XtP" firstAttribute="leading" secondItem="cmx-z5-zh2" secondAttribute="leadingMargin" constant="-3" id="WjD-xz-IeC"/>
+                            <constraint firstItem="EzL-oH-Dc0" firstAttribute="top" secondItem="XFW-5M-PuC" secondAttribute="bottom" constant="8" id="e9K-9h-Rbk"/>
+                            <constraint firstItem="x3d-7T-aXr" firstAttribute="leading" secondItem="cmx-z5-zh2" secondAttribute="leadingMargin" constant="-3" id="pig-FB-Ss6"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="EzL-oH-Dc0" secondAttribute="trailing" id="rKM-Pl-pvT"/>
+                            <constraint firstItem="XFW-5M-PuC" firstAttribute="leading" secondItem="O3B-2T-XtP" secondAttribute="trailing" constant="55" id="sfl-rV-CiT"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="XFW-5M-PuC" secondAttribute="trailing" id="wMz-xz-Ohq"/>
+                            <constraint firstItem="x3d-7T-aXr" firstAttribute="top" secondItem="O3B-2T-XtP" secondAttribute="bottom" constant="18" id="zgp-xy-TKx"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="New Timeline" id="vfC-Zu-MZd"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="descriptionTextField" destination="EzL-oH-Dc0" id="LZv-ZB-HPJ"/>
                         <outlet property="nameTextField" destination="XFW-5M-PuC" id="hA9-bQ-sAG"/>
                     </connections>
                 </viewController>

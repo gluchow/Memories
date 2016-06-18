@@ -39,10 +39,11 @@ class TimelineDao: BaseDao {
         }
     }
     
-    func persistTimeline(forName name: String) -> (Timeline?, NSError?) {
+    func persistTimeline(forName name: String, andDescription description: String?) -> (Timeline?, NSError?) {
         let timeline =  createEntity(forName: Timeline.EntityName) as! Timeline
         timeline.name = name
-        timeline.creationDate = NSDate() // TODO anders lösen - evtl. init oder Ähnliches in der Entität
+        timeline.descriptiontext = description
+        timeline.creationDate = NSDate()
         
         do {
             try managedContext.save()
