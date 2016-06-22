@@ -19,8 +19,7 @@ class MomentsTableViewController: UIViewController, UITableViewDataSource, UITab
             tableView.delegate = self
             tableView.dataSource = self
             
-            // TODO max. tableView.rowHeight?
-            tableView.estimatedRowHeight = 150
+            tableView.estimatedRowHeight = 100
             tableView.rowHeight = UITableViewAutomaticDimension
         }
     }

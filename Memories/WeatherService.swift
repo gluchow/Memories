@@ -48,6 +48,7 @@ class WeatherService: NSObject {
                 
                 // Prüfe ob Wetterdaten auswertbar sind:
                 if response.result.error != nil {
+                    // TODO response.response!.statusCode prüfen
                     callback(weather: nil, error: NSError(domain: "Fehler beim Aufruf der Wetterdaten.", code: response.response!.statusCode, userInfo: nil))
                     return
                 }

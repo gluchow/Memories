@@ -159,6 +159,7 @@ class MomentDetailsViewController: UIViewController, NSFetchedResultsControllerD
         }
     }
     
+    // TODO zentral auslagern
     private func updateMomentImage() {
         if let urlString = moment?.imageUrl {
             if let url = NSURL(string: urlString) {

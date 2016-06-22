@@ -77,51 +77,61 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oVE-R4-znh">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="112" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oVE-R4-znh">
                                 <rect key="frame" x="0.0" y="59" width="600" height="497"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Moment Cell" rowHeight="140" id="NJx-ub-4Js" customClass="MomentTableViewCell" customModule="Memories" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="600" height="140"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Moment Cell" rowHeight="112" id="NJx-ub-4Js" customClass="MomentTableViewCell" customModule="Memories" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="112"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NJx-ub-4Js" id="Cw3-hB-btn">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="139"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="111"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zzZ-nP-mdm">
-                                                    <rect key="frame" x="8" y="37" width="501" height="68"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zzZ-nP-mdm">
+                                                    <rect key="frame" x="8" y="37" width="489" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6cN-P8-Ofj">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YBp-tb-JPT">
+                                                    <rect key="frame" x="8" y="8" width="489" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Info (creation date / location)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xHS-hg-mzk">
+                                                    <rect key="frame" x="8" y="66" width="489" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="6cN-P8-Ofj">
                                                     <rect key="frame" x="517" y="8" width="75" height="75"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="75" id="MaF-0g-7Li"/>
-                                                        <constraint firstAttribute="width" constant="75" id="Z69-NW-Px5"/>
+                                                        <constraint firstAttribute="width" constant="75" id="0uX-aW-nwi"/>
+                                                        <constraint firstAttribute="height" constant="75" id="ZxN-41-s0l"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YBp-tb-JPT">
-                                                    <rect key="frame" x="8" y="8" width="501" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottomMargin" secondItem="zzZ-nP-mdm" secondAttribute="bottom" constant="26" id="D7s-tU-fyZ"/>
-                                                <constraint firstAttribute="topMargin" secondItem="6cN-P8-Ofj" secondAttribute="top" id="Q6s-9d-AOf"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="6cN-P8-Ofj" secondAttribute="trailing" id="REW-gU-hFV"/>
-                                                <constraint firstItem="6cN-P8-Ofj" firstAttribute="leading" secondItem="YBp-tb-JPT" secondAttribute="trailing" constant="8" symbolic="YES" id="WNP-ay-eoO"/>
-                                                <constraint firstAttribute="leadingMargin" secondItem="YBp-tb-JPT" secondAttribute="leading" id="Wfb-0u-7QK"/>
-                                                <constraint firstAttribute="leadingMargin" secondItem="zzZ-nP-mdm" secondAttribute="leading" id="X04-x5-fG8"/>
-                                                <constraint firstItem="6cN-P8-Ofj" firstAttribute="leading" secondItem="zzZ-nP-mdm" secondAttribute="trailing" constant="8" symbolic="YES" id="ZMi-3O-lm0"/>
-                                                <constraint firstItem="zzZ-nP-mdm" firstAttribute="top" secondItem="YBp-tb-JPT" secondAttribute="bottom" constant="8" symbolic="YES" id="b1l-4A-Tlq"/>
-                                                <constraint firstAttribute="topMargin" secondItem="YBp-tb-JPT" secondAttribute="top" id="u9l-X8-NZN"/>
+                                                <constraint firstItem="6cN-P8-Ofj" firstAttribute="leading" secondItem="zzZ-nP-mdm" secondAttribute="trailing" constant="20" id="1lr-SU-Tcp"/>
+                                                <constraint firstAttribute="leadingMargin" secondItem="xHS-hg-mzk" secondAttribute="leading" id="7rK-jm-2mz"/>
+                                                <constraint firstAttribute="leadingMargin" secondItem="zzZ-nP-mdm" secondAttribute="leading" id="IMr-Q9-PrQ"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="6cN-P8-Ofj" secondAttribute="bottom" constant="20" id="JhD-xb-88Z"/>
+                                                <constraint firstItem="6cN-P8-Ofj" firstAttribute="leading" secondItem="YBp-tb-JPT" secondAttribute="trailing" constant="20" id="KcL-HV-5iB"/>
+                                                <constraint firstItem="6cN-P8-Ofj" firstAttribute="leading" secondItem="xHS-hg-mzk" secondAttribute="trailing" constant="20" id="YM3-zU-odS"/>
+                                                <constraint firstItem="xHS-hg-mzk" firstAttribute="top" secondItem="zzZ-nP-mdm" secondAttribute="bottom" constant="8" id="q3I-5I-0iu"/>
+                                                <constraint firstAttribute="topMargin" secondItem="YBp-tb-JPT" secondAttribute="top" id="qFp-Pf-2op"/>
+                                                <constraint firstItem="zzZ-nP-mdm" firstAttribute="top" secondItem="YBp-tb-JPT" secondAttribute="bottom" constant="8" id="qMG-a0-6VY"/>
+                                                <constraint firstAttribute="topMargin" secondItem="6cN-P8-Ofj" secondAttribute="top" id="rm0-Hr-srb"/>
+                                                <constraint firstAttribute="leadingMargin" secondItem="YBp-tb-JPT" secondAttribute="leading" id="sjG-I7-Gks"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="6cN-P8-Ofj" secondAttribute="trailing" id="w3h-SU-W4O"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="descriptionLabelField" destination="zzZ-nP-mdm" id="O5H-k8-uwe"/>
+                                            <outlet property="infoField" destination="xHS-hg-mzk" id="kH6-k7-xTw"/>
                                             <outlet property="momentImage" destination="6cN-P8-Ofj" id="ICW-H7-a6M"/>
                                             <outlet property="nameLabelField" destination="YBp-tb-JPT" id="HCg-qW-4yS"/>
                                             <segue destination="Hbm-vB-a97" kind="show" identifier="Show Moment Details" id="wYp-jp-1fy"/>
@@ -575,6 +585,6 @@
         <image name="missing-weather" width="512" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="9lR-AW-zWf"/>
+        <segue reference="Z0P-Gz-rVW"/>
     </inferredMetricsTieBreakers>
 </document>
