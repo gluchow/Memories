@@ -2,6 +2,7 @@
 {\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 Menlo-Regular;\f2\fmodern\fcharset0 Courier;
 \f3\fnil\fcharset0 Menlo-Bold;}
 {\colortbl;\red255\green255\blue255;\red27\green29\blue31;\red14\green0\blue0;\red247\green247\blue247;
+\red170\green13\blue145;\red92\green38\blue153;\red38\green71\blue75;\red46\green13\blue110;\red196\green26\blue22;
 }
 {\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{hyphen\}}{\leveltext\leveltemplateid1\'01\uc0\u8259 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid1}}
 {\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}}
@@ -16,29 +17,28 @@
 \
 \pard\tx220\tx720\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\li720\fi-720\pardirnatural\partightenfactor0
 \ls1\ilvl0
-\b \cf0 \ul Offene Punkte
-\b0 \ulnone \
+\b \cf0 \ul Offene Punkte\
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
-\cf0 - Moment Details verbessern (statische Tabelle / feste UI)\
-- TODOs im Code behandeln\'85\
-- Moment erstellen / bearbeiten verbessern (Wetterdaten und aktuelle Position weiterhin nicht anbieten, auch nicht beim Bearbeiten - da nicht editierbar).\
-- Moment Cell verbessern\
-- Timeline Name ist eindeutig - Meldung beim Erstellen einer gleichnamigen Timeline\
-- Erstellen des Core Data Contexts anpassen (eigene Fehlermeldung) in AppDelegate\
-- Dao als singleton - shared instance?\
-- iCloud Sync (Core Data)\
-- Moment-Punkt auf der Karte: Zoom\
+
+\b0 \cf0 \ulnone - TODOs im Code behandeln\'85\
+- View verbessern: Moment Details (statische Tabelle / feste UI)\
+- View verbessern: Moment erstellen / bearbeiten (Wetterdaten und aktuelle Position weiterhin nicht anbieten, auch nicht beim Bearbeiten - da nicht editierbar).\
+- View verbessern: Moment Cell\
+- Timeline Name ist eindeutig - Meldung beim Erstellen einer gleichnamigen Timeline (Error Handling?)\
+- Anwendung ohne Internet Verbindung testen\
+- Dao als Singleton - shared instance?\
+\
+- Optional: Moment-Punkt auf der Karte: Zoom\
+- Optional: iCloud Sync (Core Data) - {\field{\*\fldinst{HYPERLINK "https://www.objc.io/issues/10-syncing-data/icloud-core-data/"}}{\fldrslt https://www.objc.io/issues/10-syncing-data/icloud-core-data/}} -> iCloud in the Simulator (funktioniert nicht einwandfrei\'85)\
 - Optional: GenericDao
 \f1\fs22 \CocoaLigature0 \
 
-\f0\fs24 \CocoaLigature1 - Optional: eigenes Logo/Bild in Images einbinden\
-- Optional: Moment Details: Distanz von aktueller Position zum Moment anzeigen\
+\f0\fs24 \CocoaLigature1 - Optional: Moment Details: Distanz von aktueller Position zum Moment anzeigen\
 - Optional: Icons f\'fcr Wetterlage laden\
 - Optional: Startseite / + evtl. Logo\
 - Optional: Weitere Bibliotheken einbinden zum Ausprobieren - evtl. f\'fcr async\
 - Optional: eigenen zentralen Logger mit einfachem print() + Klassenname des Nutzers vor dem Log. Timestamp aktuell nicht ben\'f6tigt.\
-- Optional: Einstellungen der App -> Momente chronologisch absteigend oder aufsteigend? -> NSUserDefaults\
-- Optional: ScrollView f\'fcr das Bild in Moment-Details\
+- Optional: eigene View (ScrollView) f\'fcr das Bild in Moment-Details\
 \
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 
@@ -77,28 +77,19 @@ AddressBook ({\field{\*\fldinst{HYPERLINK "https://www.raywenderlich.com/97936/a
 \f0\fs24 \cf0 \CocoaLigature1 - Foto aus Library anzeigen: Photos\
 	deprecated: 
 \f1\fs22 \CocoaLigature0 AssetsLibrary ({\field{\*\fldinst{HYPERLINK "https://www.raywenderlich.com/76285/beginning-core-image-swift"}}{\fldrslt https://www.raywenderlich.com/76285/beginning-core-image-swift}})\
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 
-\f0\fs24 \cf0 \CocoaLigature1 - Moment bearbeiten (Wiederverwendung von \'84neuen Moment erstellen\'93)\
+\f0\fs24 \CocoaLigature1 - Moment bearbeiten (Wiederverwendung von \'84neuen Moment erstellen\'93)\
 - Karte mit dem Moment anzeigen (wenn Location ermittelt werden konnte; beide F\'e4lle testen)\
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
-\cf0 - Editieren eines Moments -> Moment Details aktualisieren. L\'f6sen mit NSFetchedResultsController - Monitoring der \'c4nderungen an Moment-Entit\'e4ten (CoreData).\
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
-\cf0 - Timeline Beschreibung\
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
-\cf0 \
+- Editieren eines Moments -> Moment Details aktualisieren. L\'f6sen mit NSFetchedResultsController - Monitoring der \'c4nderungen an Moment-Entit\'e4ten (CoreData).\
+- Timeline Beschreibung\
+\
 \
 \
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 
 \b \cf0 \ul Punkte zur Kl\'e4rung
 \b0 \ulnone \
-- Zugriff auf Kontakte und Photo -> Info.plist oder programmatisch l\'f6sen?\
-- Was soll dem Benutzer im Fehlerfall gezeigt werden (NSError: domain, code, \'85)\
-- Aufteilung der Controller nach Zust\'e4ndigkeiten? (Geo, Photo, Camera, ?)\
-- Validieren von Eingaben (vor dem Erstellen eines ManagedObjects / verwerfen / \'85?)\
-- Navigation Controller vor allen MVC ben\'f6tigt? Vermutlich reicht der eine beim Einstieg.\
-- NSFetchedResultsController nur mit Tabellen?\
+- \
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 
 \f1\fs22 \cf0 \CocoaLigature0 \
@@ -140,6 +131,28 @@ AddressBook ({\field{\*\fldinst{HYPERLINK "https://www.raywenderlich.com/97936/a
 	-> M\'f6glichkeit: sharedFolder (iCloud). Zuk\'fcnftig aber eher auf eigener L\'f6sung per WebService (REST) hochladen und den Link im Moment speichern.\
 	-> f\'fcr die Ausarbeitung im Rahmen von SPP reicht es, sich die URL zur lokalen Image-Library im Moment zu speichern\
 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 - Zugriff auf Kontakte und Photo -> Info.plist oder programmatisch l\'f6sen?\
+	-> in der Regel wird sowohl ein Eintrag in Info.plist ben\'f6tigt, als auch die Pr\'fcfung im Code\
+\
+- Error Handling: Was soll dem Benutzer im Fehlerfall gezeigt werden (NSError: domain, code, \'85)\
+\
+- Aufteilung der Controller nach Zust\'e4ndigkeiten? (Geo, Photo, Camera, ?)\
+	-> Aufteilung ab einer gewissen Gr\'f6\'dfe selbstverst\'e4ndlich. Bei aktuell ca. 200 loc ok.\
+	-> Aufteilung z.B. m\'f6glich mit Extensions oder Generics\
+\
+- Extension f\'fcr Entit\'e4ten an den Stellen, wo es ben\'f6tigt wird? Z.B. Concat von Feldern, die f\'fcr die View relevant sind.\
+	-> Eine M\'f6glichkeit, hier aber nicht notwendig. Extension dient eher der Freiheit f\'fcr verschiedene Plattformen Code \
+\
+- Validieren von Eingaben (vor dem Erstellen eines ManagedObjects / verwerfen / \'85?)\
+	-> Wenn die Applikation beendet wird, wird automatisch der Managed Context gesichert.\
+\
+- Navigation Controller vor allen MVC ben\'f6tigt? Vermutlich reicht der eine beim Einstieg.\
+	-> i.d.R. reicht ein Navigation Controller auf den die neuen Views gepusht werden usw.\
+	-> z.B. bei Tabs wird pro Tab ein Navigation Controller ben\'f6tigt\
+	-> Auch wenn neue View (modal) angezeigt wird, kann man dort einen Navigation Controller dazuschalten\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
 \
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 
@@ -149,7 +162,24 @@ AddressBook ({\field{\*\fldinst{HYPERLINK "https://www.raywenderlich.com/97936/a
 		- fehlerhafte CoreData Beschreibung - Aktualisierung nicht automatisch\
 		- Pods / Bibliotheken nicht verf\'fcgbar\
 \
+
+\b \ul Codeschnipsel:
+\b0 \ulnone \
+Lokalisierung:\
 \pard\tx529\pardeftab529\pardirnatural\partightenfactor0
-\cf0 \
+
+\f1\fs22 \cf5 \CocoaLigature0 enum\cf0  MomentError: \cf6 ErrorType\cf0  \{\
+    \cf5 case\cf0  NameValidationError(message: \cf6 String\cf0 )\
+    \
+    \cf5 func\cf0  localized() -> \cf6 String\cf0  \{\
+        \cf5 switch\cf0  \cf5 self\cf0  \{\
+        \cf5 case\cf0  .\cf7 NameValidationError\cf0 (\cf5 let\cf0  message):\
+            \cf5 return\cf0  \cf8 NSLocalizedString\cf0 (message, comment: \cf9 ""\cf0 )\
+        \cf5 default\cf0 :\
+           	// TODO\
+        \}\
+    \}\
+\}
+\f0\fs24 \CocoaLigature1 \
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 \cf0 	}
