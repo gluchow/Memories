@@ -1,7 +1,6 @@
 import Foundation
 import CoreData
 
-// TODO oder über extension für Timeline?
 class TimelineDao: BaseDao {
     typealias DeleteTimelineResponse = (success: Bool, error: NSError?)
     typealias PersistTimelineResponse = (result: Timeline?, error: NSError?)
@@ -52,11 +51,7 @@ class TimelineDao: BaseDao {
             
         } catch let error as NSError  {
             print("Could not save \(error), \(error.userInfo)")
-
-            if error.code == ErrorCode.ConstraintConflict {
-                return (nil, NSError(domain: error.domain, code: error.code, userInfo: [BaseDao.EndUserMessageKey: "Constraint..."]))
-            }
-
+            self.managedContext.deleteObject(timeline) // remove from context
             return (nil, error)
         }
         
