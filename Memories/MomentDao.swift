@@ -1,8 +1,8 @@
 import Foundation
-import CoreData // TODO warum muss CoreData importiert werden, wenn die Basisklasse dies bereits macht?
+import CoreData
 
 enum MomentError: ErrorType {
-    case NameValidationError
+    case NameValidationError(message: String)
 }
 
 class MomentDao : BaseDao {
@@ -33,7 +33,7 @@ class MomentDao : BaseDao {
             return(true, nil)
             
         } catch let error as NSError  {
-            print("Could not delete moment: \(error), \(error.userInfo)")
+            print("Could not delete moment: \(error), \(error.localizedDescription)")
             return(false, error)
         }
     }
@@ -43,7 +43,7 @@ class MomentDao : BaseDao {
         
         let moment =  createEntity(forName: Moment.EntityName) as! Moment
         moment.name = name
-        moment.creationDate = NSDate() // TODO anders lösen - evtl. init oder Ähnliches in der Entität
+        moment.creationDate = NSDate()
         moment.timeline = timeline
         return moment;
     }
@@ -60,14 +60,16 @@ class MomentDao : BaseDao {
             return(moment, nil)
             
         } catch let error as NSError  {
-            print("Could not save moment: \(error), \(error.userInfo)")
+            print("Could not save moment: \(error), \(error.localizedDescription)")
             return(nil, error)
         }
     }
     
     private func ensureNameIsValid(name: String) throws {
+        // Alternativ mit guard
+        // Leerzeichen entfernen und auf Länge prüfen
         if name.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()).characters.count < 3 {
-            throw MomentError.NameValidationError
+            throw MomentError.NameValidationError(message: "Name must have at least 3 characters.")
         }
     }
     

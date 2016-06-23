@@ -16,7 +16,7 @@ class NewTimelineViewController: UIViewController, UITextFieldDelegate {
     func save(sender: AnyObject) {
         let result = TimelineDao().persistTimeline(forName: nameTextField.text!, andDescription: descriptionTextField.text)
         if result.error != nil {
-            showErrorMessage("Timeline could not be saved.")
+            showMessage("Timeline could not be saved.", type: .Error)
             return
         }
         navigationController?.popViewControllerAnimated(true)

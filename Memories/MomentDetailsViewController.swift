@@ -84,10 +84,11 @@ class MomentDetailsViewController: UIViewController, NSFetchedResultsControllerD
 
     @IBAction func deleteMoment(sender: UIBarButtonItem) {
         if moment != nil {
-            showWarningAlert("Do you really want to delete this moment?", actionHandler: { (action: UIAlertAction!) in
+            showRequestMessage("Do you really want to delete this moment?", type: .Warning, actionHandler: { (action: UIAlertAction!) in
                 let response = self.momentDao.delete(self.moment!)
-                if let error = response.error {
-                    self.showErrorMessage("Moment could not be deleted. \(error.domain). Error code: \(error.code)")
+                if response.error != nil {
+                    self.showMessage("Moment could not be deleted.", type: .Error)
+                    return
                 }
                 
                 self.navigationController?.popViewControllerAnimated(true)

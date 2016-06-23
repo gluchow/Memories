@@ -53,7 +53,6 @@ class EditMomentViewController: UIViewController, UITextFieldDelegate, CLLocatio
 
     func save(sender: AnyObject) {
         if moment != nil { // Moment exists already because it is being edited
-            
             persistMomentAndCloseViewOnSuccess()
             
         } else {
@@ -73,10 +72,12 @@ class EditMomentViewController: UIViewController, UITextFieldDelegate, CLLocatio
                 persistMomentAndCloseViewOnSuccess()
             }
             
-        } catch MomentError.NameValidationError {
-            showErrorMessage("Name must have at least 3 characters.")
+        } catch MomentError.NameValidationError(let message) {
+            showMessage(message)
+            
         } catch {
-            showErrorMessage("Could not create a new moment. Unexpected error occurred.")
+            showMessage("Could not create a new moment. Unexpected error occurred.", type: MessageType.Error)
+
         }
     }
 
@@ -153,8 +154,8 @@ class EditMomentViewController: UIViewController, UITextFieldDelegate, CLLocatio
         
         let persistResult = self.momentDao.persistMoment(self.moment!)
         
-        if let error = persistResult.error {
-            self.showErrorMessage("Moment couldn't be saved. \(error.domain). Error code: \(error.code)") // TODO was soll dem Benutzer gezeigt werden?
+        if persistResult.error != nil {
+            self.showMessage("Moment couldn't be saved.", type: MessageType.Error)
             return
         }
         
@@ -234,8 +235,6 @@ class EditMomentViewController: UIViewController, UITextFieldDelegate, CLLocatio
     
     func contactPicker(picker: CNContactPickerViewController, didSelectContact contact: CNContact) {
         pickedContacts.append("\(contact.givenName) \(contact.familyName)")
-        
-        // modale View schließen
         dismissViewControllerAnimated(true, completion: nil)
     }
 }
