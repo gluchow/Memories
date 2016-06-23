@@ -15,6 +15,6 @@ extension Moment: MKAnnotation {
     }
     
     var subtitle: String? {
-        return creationDate.debugDescription // TODO format
+        return Utils.dateString(creationDate)
     }
 }

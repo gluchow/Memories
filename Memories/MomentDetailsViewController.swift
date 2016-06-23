@@ -8,7 +8,7 @@ class MomentDetailsViewController: UIViewController, NSFetchedResultsControllerD
     
     var moment: Moment? {
         didSet {
-            print("MomentDetailsViewController moment didSet... moment: \(moment)")
+            print("MomentDetailsViewController moment didSet - moment: \(moment)")
             updateUI()
         }
     }
@@ -43,17 +43,8 @@ class MomentDetailsViewController: UIViewController, NSFetchedResultsControllerD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("viewDidLoad()")
-        
         updateUI()
-        
-        // Performs fetch. Initializes fetchedResultsController and registering as delegate.
-        do {
-            try self.fetchedResultsController.performFetch()
-        } catch {
-            let fetchError = error as NSError
-            print("\(fetchError), \(fetchError.userInfo)")
-        }
+        performFetchResult()
     }
    
     private func updateUI() {
@@ -62,7 +53,7 @@ class MomentDetailsViewController: UIViewController, NSFetchedResultsControllerD
         if let moment = self.moment {
             nameLabelField?.text = moment.name
             descriptionLabelField?.text = moment.descriptiontext
-            creationDateLabelField?.text = moment.creationDate?.description // TODO Formatter
+            creationDateLabelField?.text = Utils.dateString(moment.creationDate)
             
             updateWeatherDetails()
             updateMomentImage()
@@ -80,6 +71,15 @@ class MomentDetailsViewController: UIViewController, NSFetchedResultsControllerD
         locationLabelField?.text = nil
         participantsLabelField?.text = nil
         mapButton?.enabled = false // initially deactivated
+    }
+    
+    private func performFetchResult() {
+        do {
+            try self.fetchedResultsController.performFetch()
+        } catch {
+            let fetchError = error as NSError
+            print("\(fetchError), \(fetchError.userInfo)")
+        }
     }
 
     @IBAction func deleteMoment(sender: UIBarButtonItem) {

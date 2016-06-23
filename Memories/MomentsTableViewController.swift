@@ -26,7 +26,6 @@ class MomentsTableViewController: UIViewController, UITableViewDataSource, UITab
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        print("MomentsTableViewController - viewWillAppear")
 
         if tableView != nil {
             reloadUI()

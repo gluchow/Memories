@@ -7,9 +7,7 @@ class NewTimelineViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         nameTextField.becomeFirstResponder()
-        
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: #selector(save(_:)))
     }
     

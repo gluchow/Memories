@@ -5,9 +5,6 @@ class TimelineTableViewController: UITableViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        log("viewWillAppear")
-        
-        // TODO prüfen, ob es sinnvoll ist jedes Mal die Daten zu laden
         loadData()
     }
     
@@ -18,12 +15,7 @@ class TimelineTableViewController: UITableViewController {
             tableView.reloadData()
         }
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        log("viewDidLoad")
-    }
-    
+
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if(segue.identifier == Storyboard.Segue.ShowMoments) {
             if let indexPath = self.tableView.indexPathForSelectedRow {
@@ -48,7 +40,6 @@ class TimelineTableViewController: UITableViewController {
             cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: Storyboard.Identifier.TimelineTableCell)
         }
         
-        // TODO eigenen Celltype
         cell?.textLabel?.text = timelines[indexPath.row].name
 
         return cell!
@@ -57,16 +48,6 @@ class TimelineTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return timelines.count
-    }
-    
-    
-    
-    // ------------------------------------------------------------------------------------------------------
-    // MARK: helping functions
-    private func log(text: String) {
-        let currentClassType = NSStringFromClass(self.dynamicType)
-        print("\(currentClassType) - \(text)")
-        // NSLog("\(currentClassType) - \(text)")
     }
 
 }

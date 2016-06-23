@@ -37,10 +37,8 @@ class MomentTableViewCell: UITableViewCell {
     private func updateInfoField() {
         if let moment = self.moment {
             var infoText = ""
-            if let creationDate = moment.creationDate {
-                let dateFormatter = NSDateFormatter()
-                dateFormatter.dateFormat = "dd.MM.yyyy"
-                infoText.appendContentsOf("\(dateFormatter.stringFromDate(creationDate))")
+            if let creationDate = Utils.dateString(moment.creationDate) {
+                infoText.appendContentsOf(creationDate)
             }
             if !moment.locationString.characters.isEmpty {
                 infoText.appendContentsOf(", ")
