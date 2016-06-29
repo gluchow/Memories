@@ -2,8 +2,8 @@
 {\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 Menlo-Regular;\f2\fmodern\fcharset0 Courier;
 \f3\fnil\fcharset0 Menlo-Bold;}
 {\colortbl;\red255\green255\blue255;\red27\green29\blue31;\red14\green0\blue0;\red247\green247\blue247;
-\red170\green13\blue145;\red92\green38\blue153;\red38\green71\blue75;\red46\green13\blue110;\red196\green26\blue22;
-\red0\green116\blue0;}
+\red41\green24\blue87;\red170\green13\blue145;\red92\green38\blue153;\red38\green71\blue75;\red46\green13\blue110;
+\red196\green26\blue22;\red0\green116\blue0;}
 {\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{hyphen\}}{\leveltext\leveltemplateid1\'01\uc0\u8259 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid1}}
 {\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}}
 \paperw11900\paperh16840\margl1440\margr1440\vieww25400\viewh17600\viewkind0
@@ -20,22 +20,14 @@
 \b \cf0 \ul Offene Punkte\
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 
-\b0 \cf0 \ulnone - TODOs im Code behandeln\'85\
-- View verbessern: Moment Details (statische Tabelle / feste UI)\
-- View verbessern: Moment erstellen / bearbeiten (Wetterdaten und aktuelle Position weiterhin nicht anbieten, auch nicht beim Bearbeiten - da nicht editierbar).\
-- View verbessern: Moment Cell\
-- Anwendung ohne Internet Verbindung testen\
-- Dao als Singleton - shared instance?\
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
-\cf0 - Moment bearbeiten -> Validieren des Namens? Konzept mit DAO \'fcberdenken\'85\
-\
+\b0 \cf0 \ulnone - Dao als Singleton - shared instance?\
+- Moment bearbeiten -> Validieren des Namens? Konzept mit DAO \'fcberdenken\'85\
 - Optional: Moment-Punkt auf der Karte: Zoom\
 - Optional: iCloud Sync (Core Data) - {\field{\*\fldinst{HYPERLINK "https://www.objc.io/issues/10-syncing-data/icloud-core-data/"}}{\fldrslt https://www.objc.io/issues/10-syncing-data/icloud-core-data/}} -> iCloud in the Simulator (funktioniert nicht einwandfrei\'85)\
 - Optional: GenericDao
 \f1\fs22 \CocoaLigature0 \
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 
-\f0\fs24 \cf0 \CocoaLigature1 - Optional: Moment Details: Distanz von aktueller Position zum Moment anzeigen\
+\f0\fs24 \CocoaLigature1 - Optional: Moment Details: Distanz von aktueller Position zum Moment anzeigen\
 - Optional: Icons f\'fcr Wetterlage laden\
 - Optional: Startseite / + evtl. Logo\
 - Optional: Weitere Bibliotheken einbinden zum Ausprobieren - evtl. f\'fcr async\
@@ -84,11 +76,19 @@ AddressBook ({\field{\*\fldinst{HYPERLINK "https://www.raywenderlich.com/97936/a
 - Karte mit dem Moment anzeigen (wenn Location ermittelt werden konnte; beide F\'e4lle testen)\
 - Editieren eines Moments -> Moment Details aktualisieren. L\'f6sen mit NSFetchedResultsController - Monitoring der \'c4nderungen an Moment-Entit\'e4ten (CoreData).\
 - Timeline Beschreibung\
+- Timeline Name ist eindeutig - Meldung beim Erstellen einer gleichnamigen Timeline (Error Handling?)\
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
-\cf0 - Timeline Name ist eindeutig - Meldung beim Erstellen einer gleichnamigen Timeline (Error Handling?)\
+\cf0 - TODOs im Code behandeln\'85\
+- View verbessern: Moment Details (statische Tabelle / feste UI)\
+- View verbessern: Moment erstellen / bearbeiten (Wetterdaten und aktuelle Position weiterhin nicht anbieten, auch nicht beim Bearbeiten - da nicht editierbar).\
+- View verbessern: Moment Cell\
+- Anwendung ohne Internet Verbindung testen\
+	\'97> Wetterdaten werden nicht geladen, Log-Eintrag\
+	\'97> Ort wird nicht geladen (
+\f1 \cf5 reverseGeocodeLocation)\
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
-\cf0 \
-\
+
+\f0 \cf0 \
 \
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 
@@ -177,24 +177,23 @@ AddressBook ({\field{\*\fldinst{HYPERLINK "https://www.raywenderlich.com/97936/a
 Lokalisierung:\
 \pard\tx529\pardeftab529\pardirnatural\partightenfactor0
 
-\f1\fs22 \cf5 \CocoaLigature0 enum\cf0  MomentError: \cf6 ErrorType\cf0  \{\
-    \cf5 case\cf0  NameValidationError(message: \cf6 String\cf0 )\
+\f1\fs22 \cf6 \CocoaLigature0 enum\cf0  MomentError: \cf7 ErrorType\cf0  \{\
+    \cf6 case\cf0  NameValidationError(message: \cf7 String\cf0 )\
     \
-    \cf5 func\cf0  localized() -> \cf6 String\cf0  \{\
-        \cf5 switch\cf0  \cf5 self\cf0  \{\
-        \cf5 case\cf0  .\cf7 NameValidationError\cf0 (\cf5 let\cf0  message):\
-            \cf5 return\cf0  \cf8 NSLocalizedString\cf0 (message, comment: \cf9 ""\cf0 )\
-        \cf5 default\cf0 :\
-           	// TODO\
+    \cf6 func\cf0  localized() -> \cf7 String\cf0  \{\
+        \cf6 switch\cf0  \cf6 self\cf0  \{\
+        \cf6 case\cf0  .\cf8 NameValidationError\cf0 (\cf6 let\cf0  message):\
+            \cf6 return\cf0  \cf9 NSLocalizedString\cf0 (message, comment: \cf10 ""\cf0 )\
+        \cf6 default\cf0 :\
+           	// \'85\
         \}\
     \}\
 \}
 \f0\fs24 \CocoaLigature1 \
 \
-\pard\tx529\pardeftab529\pardirnatural\partightenfactor0
 
-\f1\fs22 \cf5 \CocoaLigature0 private\cf0  \cf5 func\cf0  log(text: \cf6 String\cf0 ) \{\
-    \cf5 let\cf0  currentClassType = \cf8 NSStringFromClass\cf0 (\cf5 self\cf0 .\cf5 dynamicType\cf0 )\
-    \cf8 print\cf0 (\cf9 "\cf0 \\\cf9 (\cf0 currentClassType\cf9 ) - \cf0 \\\cf9 (\cf0 text\cf9 )"\cf0 )\
-    \cf10 // NSLog("\\(currentClassType) - \\(text)")\
+\f1\fs22 \cf6 \CocoaLigature0 private\cf0  \cf6 func\cf0  log(text: \cf7 String\cf0 ) \{\
+    \cf6 let\cf0  currentClassType = \cf9 NSStringFromClass\cf0 (\cf6 self\cf0 .\cf6 dynamicType\cf0 )\
+    \cf9 print\cf0 (\cf10 "\cf0 \\\cf10 (\cf0 currentClassType\cf10 ) - \cf0 \\\cf10 (\cf0 text\cf10 )"\cf0 )\
+    \cf11 // NSLog("\\(currentClassType) - \\(text)")\
 \cf0 \}}

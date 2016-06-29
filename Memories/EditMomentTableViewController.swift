@@ -9,7 +9,7 @@ import ContactsUI
 class EditMomentTableViewController: UITableViewController, UITextFieldDelegate, CLLocationManagerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CNContactPickerDelegate {
     
     var timeline: Timeline?
-    var moment: Moment? // TODO didSet?
+    var moment: Moment?
     
     var pickedImageUrl: String?
     var pickedParticipants = [String]() {
@@ -30,7 +30,7 @@ class EditMomentTableViewController: UITableViewController, UITextFieldDelegate,
         static let Title = ["Basic Data", "Image", "Participants"]
     }
     
-    @IBOutlet weak var nameTextField: UITextField! // TODO delegate für textfield
+    @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var participantsTextView: UITextView!
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var momentImageView: UIImageView!
