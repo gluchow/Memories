@@ -52,7 +52,7 @@ class MomentsTableViewController: UIViewController, UITableViewDataSource, UITab
                 momentViewController.timeline = timeline
                 
             case Storyboard.Segue.ShowMomentDetails:
-                let momentDetailsViewController = segue.destinationViewController as! MomentDetailsViewController
+                let momentDetailsViewController = segue.destinationViewController as! MomentDetailsTableViewController
                 let momentTableCell = sender as? MomentTableViewCell
                 let moment = momentTableCell?.moment
                 momentDetailsViewController.moment = moment
