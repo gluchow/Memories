@@ -497,48 +497,39 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PaP-fp-tSD">
                                                     <rect key="frame" x="54" y="8" width="538" height="223"/>
                                                 </imageView>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hwp-32-rKW">
-                                                    <rect key="frame" x="8" y="8" width="30" height="30"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hwp-32-rKW">
+                                                    <rect key="frame" x="8" y="8" width="35" height="35"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="30" id="KGp-Zx-eSn"/>
-                                                        <constraint firstAttribute="height" constant="30" id="iYx-03-UdH"/>
+                                                        <constraint firstAttribute="width" constant="35" id="KGp-Zx-eSn"/>
+                                                        <constraint firstAttribute="height" constant="35" id="iYx-03-UdH"/>
                                                     </constraints>
                                                     <state key="normal" title="Take Photo" image="camera"/>
                                                     <connections>
                                                         <action selector="takePhoto:" destination="pX1-zw-Fa2" eventType="touchUpInside" id="7r0-YI-Mer"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DnW-U6-iTq">
-                                                    <rect key="frame" x="8" y="46" width="30" height="30"/>
-                                                    <state key="normal" title="Lib"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DnW-U6-iTq">
+                                                    <rect key="frame" x="8" y="51" width="35" height="33"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="35" id="Iej-AE-XLg"/>
+                                                        <constraint firstAttribute="height" constant="33" id="ZuW-PX-Hsm"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Lib" image="image"/>
                                                     <connections>
                                                         <action selector="chooseImageFromLib:" destination="pX1-zw-Fa2" eventType="touchUpInside" id="EMl-rd-U2f"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="PaP-fp-tSD" firstAttribute="top" secondItem="iMH-tK-5NX" secondAttribute="topMargin" id="0M4-Bt-a02"/>
-                                                <constraint firstItem="DnW-U6-iTq" firstAttribute="top" secondItem="hwp-32-rKW" secondAttribute="bottom" constant="8" id="2rG-nD-ijY"/>
-                                                <constraint firstItem="PaP-fp-tSD" firstAttribute="bottom" secondItem="iMH-tK-5NX" secondAttribute="bottomMargin" id="EAv-3H-WR4"/>
-                                                <constraint firstItem="PaP-fp-tSD" firstAttribute="trailing" secondItem="iMH-tK-5NX" secondAttribute="trailingMargin" id="IE6-Hk-M9H"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="PaP-fp-tSD" secondAttribute="trailing" id="RLa-dY-IVt"/>
-                                                <constraint firstItem="hwp-32-rKW" firstAttribute="leading" secondItem="iMH-tK-5NX" secondAttribute="leadingMargin" id="VAL-4s-UU3"/>
-                                                <constraint firstItem="hwp-32-rKW" firstAttribute="top" secondItem="iMH-tK-5NX" secondAttribute="topMargin" id="Vt6-KM-3ta"/>
-                                                <constraint firstAttribute="topMargin" secondItem="PaP-fp-tSD" secondAttribute="top" id="Ypu-zM-Vu5"/>
-                                                <constraint firstItem="PaP-fp-tSD" firstAttribute="leading" secondItem="DnW-U6-iTq" secondAttribute="trailing" constant="16" id="c6N-Pn-QZx"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="PaP-fp-tSD" secondAttribute="bottom" id="eVB-Hc-q9W"/>
-                                                <constraint firstItem="PaP-fp-tSD" firstAttribute="leading" secondItem="iMH-tK-5NX" secondAttribute="leadingMargin" id="g2u-S4-FHi"/>
-                                                <constraint firstItem="DnW-U6-iTq" firstAttribute="leading" secondItem="iMH-tK-5NX" secondAttribute="leadingMargin" id="mar-1i-drb"/>
-                                                <constraint firstItem="PaP-fp-tSD" firstAttribute="leading" secondItem="hwp-32-rKW" secondAttribute="trailing" constant="16" id="vpZ-50-NmR"/>
+                                                <constraint firstItem="hwp-32-rKW" firstAttribute="top" secondItem="iMH-tK-5NX" secondAttribute="topMargin" id="2kV-aI-XU4"/>
+                                                <constraint firstItem="PaP-fp-tSD" firstAttribute="trailing" secondItem="iMH-tK-5NX" secondAttribute="trailingMargin" id="3IH-gG-JsF"/>
+                                                <constraint firstItem="PaP-fp-tSD" firstAttribute="leading" secondItem="hwp-32-rKW" secondAttribute="trailing" constant="11" id="5SO-wy-HFa"/>
+                                                <constraint firstItem="DnW-U6-iTq" firstAttribute="top" secondItem="hwp-32-rKW" secondAttribute="bottom" constant="8" symbolic="YES" id="PVu-6m-8mQ"/>
+                                                <constraint firstItem="hwp-32-rKW" firstAttribute="top" secondItem="PaP-fp-tSD" secondAttribute="top" id="WXw-mF-jKc"/>
+                                                <constraint firstItem="hwp-32-rKW" firstAttribute="leading" secondItem="DnW-U6-iTq" secondAttribute="leading" id="We3-aS-GcZ"/>
+                                                <constraint firstItem="hwp-32-rKW" firstAttribute="leading" secondItem="iMH-tK-5NX" secondAttribute="leadingMargin" id="a6R-UR-qL1"/>
+                                                <constraint firstItem="PaP-fp-tSD" firstAttribute="bottom" secondItem="iMH-tK-5NX" secondAttribute="bottomMargin" id="j3H-Bl-x9S"/>
                                             </constraints>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="0M4-Bt-a02"/>
-                                                    <exclude reference="EAv-3H-WR4"/>
-                                                    <exclude reference="IE6-Hk-M9H"/>
-                                                    <exclude reference="g2u-S4-FHi"/>
-                                                </mask>
-                                            </variation>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -552,13 +543,31 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="161"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="21s-6B-4Fq">
+                                                    <rect key="frame" x="55" y="8" width="537" height="145"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
+                                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wrs-oz-XWx">
+                                                    <rect key="frame" x="8" y="8" width="35" height="35"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="35" id="6ak-hL-fsm"/>
+                                                        <constraint firstAttribute="height" constant="35" id="HHq-fY-ZVH"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Add from contacts" image="add_contact"/>
+                                                    <connections>
+                                                        <action selector="addFromContacts:" destination="pX1-zw-Fa2" eventType="touchUpInside" id="vnP-3L-vBg"/>
+                                                    </connections>
+                                                </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vwW-Bd-kFg">
-                                                    <rect key="frame" x="8" y="37" width="60" height="30"/>
+                                                    <rect key="frame" x="11" y="56" width="36" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="0Wq-Vk-kIj"/>
                                                         <constraint firstAttribute="width" constant="93" id="tut-Xh-Flu"/>
+                                                        <constraint firstAttribute="width" constant="36" id="xpr-Zg-9fX"/>
                                                     </constraints>
-                                                    <state key="normal" title="Clear list"/>
+                                                    <state key="normal" title="Clear"/>
                                                     <variation key="default">
                                                         <mask key="constraints">
                                                             <exclude reference="0Wq-Vk-kIj"/>
@@ -569,38 +578,16 @@
                                                         <action selector="clearPickedContacts:" destination="pX1-zw-Fa2" eventType="touchUpInside" id="yFe-ST-PB4"/>
                                                     </connections>
                                                 </button>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="21s-6B-4Fq">
-                                                    <rect key="frame" x="135" y="8" width="457" height="145"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                </textView>
-                                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wrs-oz-XWx">
-                                                    <rect key="frame" x="8" y="8" width="127" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="133" id="J7p-eG-nmQ"/>
-                                                    </constraints>
-                                                    <state key="normal" title="Add from contacts"/>
-                                                    <variation key="default">
-                                                        <mask key="constraints">
-                                                            <exclude reference="J7p-eG-nmQ"/>
-                                                        </mask>
-                                                    </variation>
-                                                    <connections>
-                                                        <action selector="addFromContacts:" destination="pX1-zw-Fa2" eventType="touchUpInside" id="vnP-3L-vBg"/>
-                                                    </connections>
-                                                </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="21s-6B-4Fq" firstAttribute="trailing" secondItem="xxM-pU-5Q2" secondAttribute="trailingMargin" id="3V6-hT-opD"/>
-                                                <constraint firstItem="21s-6B-4Fq" firstAttribute="leading" secondItem="vwW-Bd-kFg" secondAttribute="trailing" constant="67" id="BGb-ou-2hQ"/>
-                                                <constraint firstItem="wrs-oz-XWx" firstAttribute="top" secondItem="21s-6B-4Fq" secondAttribute="top" id="MgT-FV-eGy"/>
-                                                <constraint firstItem="wrs-oz-XWx" firstAttribute="leading" secondItem="vwW-Bd-kFg" secondAttribute="leading" id="Pi8-Zr-L6i"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="vwW-Bd-kFg" secondAttribute="bottom" constant="86" id="oBn-bO-X5C"/>
-                                                <constraint firstItem="21s-6B-4Fq" firstAttribute="bottom" secondItem="xxM-pU-5Q2" secondAttribute="bottomMargin" id="p2A-lP-oxq"/>
-                                                <constraint firstItem="wrs-oz-XWx" firstAttribute="top" secondItem="xxM-pU-5Q2" secondAttribute="topMargin" id="sFX-MU-Opz"/>
-                                                <constraint firstItem="wrs-oz-XWx" firstAttribute="leading" secondItem="xxM-pU-5Q2" secondAttribute="leadingMargin" id="uVz-rD-nOc"/>
-                                                <constraint firstItem="vwW-Bd-kFg" firstAttribute="top" secondItem="wrs-oz-XWx" secondAttribute="bottom" constant="8" symbolic="YES" id="w8g-6C-RHh"/>
+                                                <constraint firstItem="wrs-oz-XWx" firstAttribute="top" secondItem="21s-6B-4Fq" secondAttribute="top" id="2CL-Az-OU5"/>
+                                                <constraint firstItem="21s-6B-4Fq" firstAttribute="trailing" secondItem="xxM-pU-5Q2" secondAttribute="trailingMargin" id="3v3-Vp-N2B"/>
+                                                <constraint firstItem="21s-6B-4Fq" firstAttribute="leading" secondItem="wrs-oz-XWx" secondAttribute="trailing" constant="12" id="4kO-U1-c6y"/>
+                                                <constraint firstItem="21s-6B-4Fq" firstAttribute="leading" secondItem="vwW-Bd-kFg" secondAttribute="trailing" constant="8" symbolic="YES" id="Hd0-kS-MzF"/>
+                                                <constraint firstItem="vwW-Bd-kFg" firstAttribute="top" secondItem="wrs-oz-XWx" secondAttribute="bottom" constant="13" id="Ie8-NZ-3DL"/>
+                                                <constraint firstItem="21s-6B-4Fq" firstAttribute="bottom" secondItem="xxM-pU-5Q2" secondAttribute="bottomMargin" id="W9h-Af-5HP"/>
+                                                <constraint firstItem="wrs-oz-XWx" firstAttribute="leading" secondItem="xxM-pU-5Q2" secondAttribute="leadingMargin" id="pmi-43-j7i"/>
+                                                <constraint firstItem="wrs-oz-XWx" firstAttribute="top" secondItem="xxM-pU-5Q2" secondAttribute="topMargin" id="x5E-oO-vVG"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -643,7 +630,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="add_contact" width="512" height="512"/>
         <image name="camera" width="512" height="512"/>
+        <image name="image" width="128" height="128"/>
         <image name="missing-weather" width="512" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
