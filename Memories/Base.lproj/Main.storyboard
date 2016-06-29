@@ -446,7 +446,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="37"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lhd-W7-Gam">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lhd-W7-Gam">
                                                     <rect key="frame" x="8" y="8" width="584" height="21"/>
                                                     <accessibility key="accessibilityConfiguration" hint="Name"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -471,18 +471,15 @@
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ymP-3F-V5f">
                                                     <rect key="frame" x="8" y="8" width="584" height="97"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="97" id="DwJ-SA-ZOW"/>
-                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="ymP-3F-V5f" firstAttribute="leading" secondItem="mzW-Vq-PxW" secondAttribute="leadingMargin" id="QiZ-kK-Gjc"/>
-                                                <constraint firstItem="ymP-3F-V5f" firstAttribute="bottom" secondItem="mzW-Vq-PxW" secondAttribute="bottomMargin" id="cHJ-0a-VPs"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="ymP-3F-V5f" secondAttribute="trailing" id="eL8-FS-tnR"/>
-                                                <constraint firstItem="ymP-3F-V5f" firstAttribute="top" secondItem="mzW-Vq-PxW" secondAttribute="topMargin" id="hgG-Im-Epi"/>
+                                                <constraint firstItem="ymP-3F-V5f" firstAttribute="trailing" secondItem="mzW-Vq-PxW" secondAttribute="trailingMargin" id="CDy-8Q-Nx7"/>
+                                                <constraint firstItem="ymP-3F-V5f" firstAttribute="leading" secondItem="mzW-Vq-PxW" secondAttribute="leadingMargin" id="Utc-Jc-Ecn"/>
+                                                <constraint firstItem="ymP-3F-V5f" firstAttribute="top" secondItem="mzW-Vq-PxW" secondAttribute="topMargin" id="hot-Yi-Wk9"/>
+                                                <constraint firstItem="ymP-3F-V5f" firstAttribute="bottom" secondItem="mzW-Vq-PxW" secondAttribute="bottomMargin" id="nJL-3A-z07"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -595,22 +592,16 @@
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="topMargin" secondItem="21s-6B-4Fq" secondAttribute="top" id="05I-E0-i8N"/>
-                                                <constraint firstItem="wrs-oz-XWx" firstAttribute="top" secondItem="xxM-pU-5Q2" secondAttribute="topMargin" id="AJc-qC-0hc"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="21s-6B-4Fq" secondAttribute="trailing" id="GOC-Hg-62F"/>
-                                                <constraint firstItem="vwW-Bd-kFg" firstAttribute="top" secondItem="xxM-pU-5Q2" secondAttribute="topMargin" constant="20" id="XeD-ha-BMq"/>
-                                                <constraint firstItem="wrs-oz-XWx" firstAttribute="leading" secondItem="xxM-pU-5Q2" secondAttribute="leadingMargin" id="erV-Pr-ycy"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="vwW-Bd-kFg" secondAttribute="bottom" constant="86" id="iIQ-O6-sSa"/>
-                                                <constraint firstItem="21s-6B-4Fq" firstAttribute="leading" secondItem="wrs-oz-XWx" secondAttribute="trailing" id="jfG-l1-1z0"/>
-                                                <constraint firstItem="vwW-Bd-kFg" firstAttribute="top" secondItem="wrs-oz-XWx" secondAttribute="bottom" constant="8" symbolic="YES" id="kgd-0L-Olf"/>
-                                                <constraint firstItem="vwW-Bd-kFg" firstAttribute="leading" secondItem="xxM-pU-5Q2" secondAttribute="leadingMargin" id="s6e-vm-iUF"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="21s-6B-4Fq" secondAttribute="bottom" id="xgE-0X-Bej"/>
+                                                <constraint firstItem="21s-6B-4Fq" firstAttribute="trailing" secondItem="xxM-pU-5Q2" secondAttribute="trailingMargin" id="3V6-hT-opD"/>
+                                                <constraint firstItem="21s-6B-4Fq" firstAttribute="leading" secondItem="vwW-Bd-kFg" secondAttribute="trailing" constant="67" id="BGb-ou-2hQ"/>
+                                                <constraint firstItem="wrs-oz-XWx" firstAttribute="top" secondItem="21s-6B-4Fq" secondAttribute="top" id="MgT-FV-eGy"/>
+                                                <constraint firstItem="wrs-oz-XWx" firstAttribute="leading" secondItem="vwW-Bd-kFg" secondAttribute="leading" id="Pi8-Zr-L6i"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="vwW-Bd-kFg" secondAttribute="bottom" constant="86" id="oBn-bO-X5C"/>
+                                                <constraint firstItem="21s-6B-4Fq" firstAttribute="bottom" secondItem="xxM-pU-5Q2" secondAttribute="bottomMargin" id="p2A-lP-oxq"/>
+                                                <constraint firstItem="wrs-oz-XWx" firstAttribute="top" secondItem="xxM-pU-5Q2" secondAttribute="topMargin" id="sFX-MU-Opz"/>
+                                                <constraint firstItem="wrs-oz-XWx" firstAttribute="leading" secondItem="xxM-pU-5Q2" secondAttribute="leadingMargin" id="uVz-rD-nOc"/>
+                                                <constraint firstItem="vwW-Bd-kFg" firstAttribute="top" secondItem="wrs-oz-XWx" secondAttribute="bottom" constant="8" symbolic="YES" id="w8g-6C-RHh"/>
                                             </constraints>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="XeD-ha-BMq"/>
-                                                </mask>
-                                            </variation>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
