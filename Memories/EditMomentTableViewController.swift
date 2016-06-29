@@ -32,9 +32,8 @@ class EditMomentTableViewController: UITableViewController, UITextFieldDelegate,
     
     @IBOutlet weak var nameTextField: UITextField! // TODO delegate für textfield
     @IBOutlet weak var participantsTextView: UITextView!
-    @IBOutlet weak var momentImage: UIImageView!
     @IBOutlet weak var descriptionTextView: UITextView!
-
+    @IBOutlet weak var momentImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,18 +48,29 @@ class EditMomentTableViewController: UITableViewController, UITextFieldDelegate,
     
     @IBAction func takePhoto(sender: UIButton) {
          print("take photo")
-        // TODO
+        if UIImagePickerController.isSourceTypeAvailable(.Camera) {
+            let picker = UIImagePickerController()
+            picker.sourceType = .PhotoLibrary
+            picker.mediaTypes = [kUTTypeImage as String]
+            picker.delegate = self
+            picker.allowsEditing = true
+            presentViewController(picker, animated: true, completion: nil)
+        } else {
+            showMessage("Camera is not available.")
+        }
     }
     
     @IBAction func chooseImageFromLib(sender: UIButton) {
         print("choose image from lib")
-        if UIImagePickerController.isSourceTypeAvailable(.PhotoLibrary) { // TODO wieder zurück auf .Camera (nicht im Simulator möglich)
+        if UIImagePickerController.isSourceTypeAvailable(.PhotoLibrary) {
             let picker = UIImagePickerController()
-            picker.sourceType = .PhotoLibrary // TODO wieder zurück auf .Camera (nicht im Simulator möglich)
-            picker.mediaTypes = [kUTTypeImage as String] // TODO prüfen, ob das so i.O. ist
+            picker.sourceType = .PhotoLibrary
+            picker.mediaTypes = [kUTTypeImage as String]
             picker.delegate = self
             picker.allowsEditing = true
             presentViewController(picker, animated: true, completion: nil)
+        } else {
+            showMessage("Image library is not available.")
         }
     }
     
@@ -78,29 +88,6 @@ class EditMomentTableViewController: UITableViewController, UITextFieldDelegate,
     private func updateParticipantsUI() {
         participantsTextView?.text = pickedParticipants.joinWithSeparator("\n")
     }
-    
-//    
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-//    }
-    
-//    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-//        print("canEditRowAtIndexPath: section \(indexPath.section)")
-//        print("canEditRowAtIndexPath: row \(indexPath.row)")
-//        return true
-//    }
-    
-//    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-//        
-//        return UITableViewAutomaticDimension
-//    }
-    
-    
     
     private func updateUI() {
         print("updateUI()")
@@ -174,8 +161,6 @@ class EditMomentTableViewController: UITableViewController, UITextFieldDelegate,
         let location = CLLocation(latitude: latitude, longitude: longitude)
         print(location)
         
-        // TODO auslagern in service
-        // Async fetch location name for given lat/lon
         CLGeocoder().reverseGeocodeLocation(location) {
             (placemarks, error) -> Void in
             print(location)
@@ -235,6 +220,15 @@ class EditMomentTableViewController: UITableViewController, UITextFieldDelegate,
         }
     }
     
+    private func updateMomentImage() {
+        if let urlString = moment?.imageUrl {
+            momentImageView?.loadImageFromLibrary(urlString) {
+                image in
+                self.momentImageView?.image = image
+                self.momentImageView?.contentMode = .ScaleAspectFit
+            }
+        }
+    }
     
     // ------------------------------------------------------------------------------------------------------
     // MARK: UITextFieldDelegate
@@ -242,9 +236,7 @@ class EditMomentTableViewController: UITableViewController, UITextFieldDelegate,
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         if textField == nameTextField {
             textField.resignFirstResponder()
-            // TODO auslesen..
         }
-        // TODO Beschreibungsfeld auslesen?
         
         return true
     }
@@ -258,8 +250,8 @@ class EditMomentTableViewController: UITableViewController, UITextFieldDelegate,
         if image == nil {
             image = info[UIImagePickerControllerOriginalImage] as? UIImage
         }
-        self.momentImage.image = image
-        self.momentImage.contentMode = .ScaleAspectFit
+        self.momentImageView.image = image
+        self.momentImageView.contentMode = .ScaleAspectFit
         
         let imageUrl = info[UIImagePickerControllerReferenceURL] as? NSURL
         print("image url: \(imageUrl?.absoluteString)")
@@ -280,113 +272,5 @@ class EditMomentTableViewController: UITableViewController, UITextFieldDelegate,
         pickedParticipants.append("\(contact.givenName) \(contact.familyName)")
         dismissViewControllerAnimated(true, completion: nil)
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-    // MARK: - Table view data source
-//    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
-//    {
-//        print("cellForRowAtIndexPath. section: \(indexPath.section)")
-//        if indexPath.section == Section.BasicData {
-//            print("show basic data...")
-//            var cell = tableView.dequeueReusableCellWithIdentifier(Storyboard.Identifier.EditMomentBasicDataCell) as? MomentBaiscDataTableViewCell
-//            if cell == nil {
-//                cell = MomentBaiscDataTableViewCell()
-//            }
-//            print("basic cell: \(cell)")
-//            cell?.moment = moment
-//            return cell!
-//            
-//        } else if indexPath.section == Section.Image {
-//            var cell = tableView.dequeueReusableCellWithIdentifier(Storyboard.Identifier.EditMomentImageCell)
-//            if cell == nil {
-//                cell = UITableViewCell()
-//            }
-//            cell?.textLabel?.text = "asdf"
-//            return cell!
-//            
-//        } else if indexPath.section == Section.Participants {
-//            var cell = tableView.dequeueReusableCellWithIdentifier(Storyboard.Identifier.EditMomentParticipantsCell) as? MomentParticipantsTableViewCell
-//            if cell == nil {
-//                cell = MomentParticipantsTableViewCell()
-//            }
-//            cell?.moment = moment
-//            return cell!
-//        
-//        } else {
-//            print("Unhandled Section ID: \(indexPath.section).")
-//            abort()
-//        }
-//
-//    }
-    
-//    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-//    {
-//        return 1
-//    }
-    
-//    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String?
-//    {
-//        return Section.Title[section]
-//    }
-//    
-//    override func numberOfSectionsInTableView(tableView: UITableView) -> Int
-//    {
-//        return Section.Title.count
-//    }
-//    
-
-
-  /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
- */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

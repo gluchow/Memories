@@ -1,6 +1,4 @@
 import UIKit
-import Photos
-import AssetsLibrary
 import CoreData
 
 class MomentDetailsTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
@@ -87,7 +85,7 @@ class MomentDetailsTableViewController: UITableViewController, NSFetchedResultsC
         weatherDescriptionLabel?.text = nil
         
         participantsTextView?.text = nil
-        momentImageView?.image = nil
+        momentImageView?.image = UIImage(named: "noimage")
     }
     
     private func updateCreationDate() {
@@ -126,36 +124,23 @@ class MomentDetailsTableViewController: UITableViewController, NSFetchedResultsC
     }
     
     private func updateParticipants() {
-        if let contacts = moment?.contacts {
-            participantsTextView?.text = contacts.joinWithSeparator("\n")
+        if moment?.contacts != nil && !moment!.contacts!.isEmpty {
+            participantsTextView?.text = moment?.contacts?.joinWithSeparator("\n")
         } else {
             participantsTextView?.text = noValue
         }
     }
     
-    // TODO zentral auslagern
     private func updateMomentImage() {
         if let urlString = moment?.imageUrl {
-            if let url = NSURL(string: urlString) {
-                let authorization = PHPhotoLibrary.authorizationStatus()
-                print("photo library auth: \(authorization)")
-                
-                let asset = PHAsset.fetchAssetsWithALAssetURLs([url], options: nil).firstObject as! PHAsset
-                let fullTargetSize = CGSizeMake(-1, -1)
-                let options = PHImageRequestOptions()
-                
-                PHImageManager.defaultManager().requestImageForAsset(asset, targetSize: fullTargetSize, contentMode: PHImageContentMode.AspectFit, options: options) {
-                    (result, info) in
-                    print("fetched image with manager: \(result)")
-                    self.momentImageView?.image = result
-                    self.momentImageView?.contentMode = .ScaleAspectFit
-                }
+            momentImageView?.loadImageFromLibrary(urlString) {
+                image in
+                self.momentImageView?.image = image
+                self.momentImageView?.contentMode = .ScaleAspectFit
             }
         }
-        
     }
 
-    
     @IBAction func deleteMoment(sender: UIBarButtonItem) {
         if moment != nil {
             showRequestMessage("Do you really want to delete this moment?", type: .Warning, actionHandler: { (action: UIAlertAction!) in
@@ -181,6 +166,7 @@ class MomentDetailsTableViewController: UITableViewController, NSFetchedResultsC
             case Storyboard.Segue.ShowMomentOnMap:
                 let momentMapViewController = segue.destinationViewController as! MomentMapViewController
                 momentMapViewController.moment = moment
+                
             default: break // nothing
             }
             

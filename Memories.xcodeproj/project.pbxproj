@@ -33,6 +33,7 @@
 		84BA3A4A1CF1BCBF00CC490B /* UIViewController_Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BA3A491CF1BCBF00CC490B /* UIViewController_Alerts.swift */; };
 		84BA3A4C1CF1D55E00CC490B /* MomentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BA3A4B1CF1D55E00CC490B /* MomentTableViewCell.swift */; };
 		84C78CBD1D24445D00F42943 /* MomentDetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C78CBC1D24445D00F42943 /* MomentDetailsTableViewController.swift */; };
+		84C78CBF1D24624500F42943 /* UIImageView_LoadFromLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C78CBE1D24624500F42943 /* UIImageView_LoadFromLibrary.swift */; };
 		84F4053D1D1FA0F3003831DB /* EditMomentTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F4053C1D1FA0F3003831DB /* EditMomentTableViewController.swift */; };
 		84F5D7561CE88DE4008278B9 /* MKMoment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F5D7551CE88DE4008278B9 /* MKMoment.swift */; };
 		84F5D75B1CE89277008278B9 /* Storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F5D75A1CE89277008278B9 /* Storyboard.swift */; };
@@ -71,6 +72,7 @@
 		84BA3A491CF1BCBF00CC490B /* UIViewController_Alerts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewController_Alerts.swift; sourceTree = "<group>"; };
 		84BA3A4B1CF1D55E00CC490B /* MomentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MomentTableViewCell.swift; sourceTree = "<group>"; };
 		84C78CBC1D24445D00F42943 /* MomentDetailsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MomentDetailsTableViewController.swift; sourceTree = "<group>"; };
+		84C78CBE1D24624500F42943 /* UIImageView_LoadFromLibrary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageView_LoadFromLibrary.swift; sourceTree = "<group>"; };
 		84F4053C1D1FA0F3003831DB /* EditMomentTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditMomentTableViewController.swift; sourceTree = "<group>"; };
 		84F5D7551CE88DE4008278B9 /* MKMoment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKMoment.swift; sourceTree = "<group>"; };
 		84F5D75A1CE89277008278B9 /* Storyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storyboard.swift; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 		848767561CE7F5E0009039C1 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				84C78CC01D2465E400F42943 /* extension */,
 				84BA3A4B1CF1D55E00CC490B /* MomentTableViewCell.swift */,
 			);
 			name = view;
@@ -227,6 +230,14 @@
 				84F4053C1D1FA0F3003831DB /* EditMomentTableViewController.swift */,
 			);
 			name = moment;
+			sourceTree = "<group>";
+		};
+		84C78CC01D2465E400F42943 /* extension */ = {
+			isa = PBXGroup;
+			children = (
+				84C78CBE1D24624500F42943 /* UIImageView_LoadFromLibrary.swift */,
+			);
+			name = extension;
 			sourceTree = "<group>";
 		};
 		84F5D7541CE88DAA008278B9 /* extension */ = {
@@ -401,6 +412,7 @@
 				84C78CBD1D24445D00F42943 /* MomentDetailsTableViewController.swift in Sources */,
 				84F4053D1D1FA0F3003831DB /* EditMomentTableViewController.swift in Sources */,
 				8476FD261CE92ADF0056E899 /* Moment+CoreDataProperties.swift in Sources */,
+				84C78CBF1D24624500F42943 /* UIImageView_LoadFromLibrary.swift in Sources */,
 				84BA3A4A1CF1BCBF00CC490B /* UIViewController_Alerts.swift in Sources */,
 				84A75E911D1C8FD50073B062 /* Utils.swift in Sources */,
 				84F70B291CF6F886004CC6DA /* WeatherDao.swift in Sources */,

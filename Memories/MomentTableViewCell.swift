@@ -10,17 +10,18 @@ class MomentTableViewCell: UITableViewCell {
         }
     }
     
-    @IBOutlet weak var nameLabelField: UILabel!
-    @IBOutlet weak var momentImage: UIImageView!
-    @IBOutlet weak var descriptionLabelField: UILabel!
-    @IBOutlet weak var infoField: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var infoLabel: UILabel!
+    @IBOutlet weak var momentImageView: UIImageView!
+    
     
     private func updateUI() {
         resetFields()
         
         if let moment = self.moment {
-            nameLabelField?.text = moment.name
-            descriptionLabelField?.text = moment.descriptiontext
+            nameLabel?.text = moment.name
+            descriptionLabel?.text = moment.descriptiontext
             updateInfoField()
             updateMomentImage()
         }
@@ -28,10 +29,10 @@ class MomentTableViewCell: UITableViewCell {
     }
     
     private func resetFields() {
-        nameLabelField?.text = nil
-        descriptionLabelField?.text = nil
-        momentImage?.image = nil
-        infoField?.text = nil
+        nameLabel?.text = nil
+        descriptionLabel?.text = nil
+        momentImageView?.image = nil
+        infoLabel?.text = nil
     }
     
     private func updateInfoField() {
@@ -44,29 +45,18 @@ class MomentTableViewCell: UITableViewCell {
                 infoText.appendContentsOf(", ")
                 infoText.appendContentsOf(moment.locationString)
             }
-            infoField?.text = infoText
+            infoLabel?.text = infoText
         }
     }
-
+    
     private func updateMomentImage() {
         if let urlString = moment?.imageUrl {
-            if let url = NSURL(string: urlString) {
-                let authorization = PHPhotoLibrary.authorizationStatus()
-                print("photo library auth: \(authorization)")
-                
-                let asset = PHAsset.fetchAssetsWithALAssetURLs([url], options: nil).firstObject as! PHAsset
-                let fullTargetSize = CGSizeMake(75, 75)
-                let options = PHImageRequestOptions()
-                
-                PHImageManager.defaultManager().requestImageForAsset(asset, targetSize: fullTargetSize, contentMode: PHImageContentMode.AspectFit, options: options) {
-                    (result, info) in
-                    print("fetched image with manager: \(result)")
-                    self.imageView?.image = result
-                    self.imageView?.contentMode = .ScaleAspectFit
-                }
+            momentImageView?.loadImageFromLibrary(urlString, size: CGSizeMake(75, 75)) {
+                image in
+                self.momentImageView?.image = image
+                self.momentImageView?.contentMode = .ScaleAspectFit
             }
         }
-        
     }
 
 }
