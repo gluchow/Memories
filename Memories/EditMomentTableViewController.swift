@@ -89,11 +89,11 @@ class EditMomentTableViewController: UITableViewController, UITextFieldDelegate,
          // self.navigationItem.rightBarButtonItem = self.editButtonItem()
 //    }
     
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        print("canEditRowAtIndexPath: section \(indexPath.section)")
-        print("canEditRowAtIndexPath: row \(indexPath.row)")
-        return true
-    }
+//    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+//        print("canEditRowAtIndexPath: section \(indexPath.section)")
+//        print("canEditRowAtIndexPath: row \(indexPath.row)")
+//        return true
+//    }
     
 //    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
 //        
@@ -154,7 +154,7 @@ class EditMomentTableViewController: UITableViewController, UITextFieldDelegate,
             callback in
             
             if let error = callback.error {
-                print("Weather data could't be fetched. Error code: \(error.code)")
+                print("Weather data could't be fetched. Error: \(error.localizedDescription)")
             }
             
             self.moment?.weather = callback.weather
@@ -184,11 +184,9 @@ class EditMomentTableViewController: UITableViewController, UITextFieldDelegate,
                 print("Error in reverse geocoder: " + error!.localizedDescription)
             }
             
-            if placemarks!.count > 0 {
+            if placemarks?.count > 0 {
                 let placemark = placemarks![0]
-                print("Reverse geocoder - Placemark gefunden: ")
-                print(placemark.country)
-                print(placemark.locality)
+                print("Reverse geocoder - placemark found: \(placemark.country), \(placemark.locality))")
                 
                 // Update location entity
                 self.moment?.location?.city = placemark.locality
@@ -197,7 +195,7 @@ class EditMomentTableViewController: UITableViewController, UITextFieldDelegate,
                 
             }
             else {
-                print("No Data from reverse geocoder received.")
+                print("Location not found. No data received from reverse geocoder.")
             }
             
             self.persistMomentAndCloseViewOnSuccess()
@@ -232,8 +230,8 @@ class EditMomentTableViewController: UITableViewController, UITextFieldDelegate,
             locationManager = CLLocationManager()
             locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
-            locationManager.requestAlwaysAuthorization()
-            locationManager.startUpdatingLocation() // TODO benötigt oder ist currentLocation auch so bekannt?
+            locationManager.requestWhenInUseAuthorization()
+            locationManager.startUpdatingLocation()
         }
     }
     

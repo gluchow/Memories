@@ -47,7 +47,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSLocationAlwaysUsageDescription</key>
+	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Memories App wants to know current location for weather data and current city / location of a moment.</string>
 	<key>NSContactsUsageDescription</key>
 	<string>Memories App wants to access to your contacts.</string>

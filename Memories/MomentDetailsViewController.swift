@@ -102,7 +102,7 @@ class MomentDetailsViewController: UIViewController, NSFetchedResultsControllerD
             
             switch(segue.identifier!) {
             case Storyboard.Segue.ShowEditMoment:
-                let editMomentViewController = segue.destinationViewController as! EditMomentViewController
+                let editMomentViewController = segue.destinationViewController as! EditMomentTableViewController
                 editMomentViewController.moment = moment
           
             case Storyboard.Segue.ShowMomentOnMap:
@@ -145,7 +145,10 @@ class MomentDetailsViewController: UIViewController, NSFetchedResultsControllerD
         }
         
         if let temperature = moment?.weather?.temperature {
-            weatherTemperatureLabelField?.text = temperature.stringValue // TODO Formatter für °C
+            let formatter = NSNumberFormatter()
+            formatter.numberStyle = .DecimalStyle
+            formatter.maximumFractionDigits = 1
+            weatherTemperatureLabelField?.text = "\(formatter.stringFromNumber(temperature)!) °C"
         }
     }
     
