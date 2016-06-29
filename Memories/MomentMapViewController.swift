@@ -19,10 +19,8 @@ class MomentMapViewController: UIViewController, MKMapViewDelegate {
     }
     
     private func updateUI() {
-        if moment != nil {
-            if moment!.hasCoordinates() {
-                self.mapView.addAnnotation(self.moment!)
-            }
+        if moment != nil && moment!.hasCoordinates() {
+            self.mapView.addAnnotation(self.moment!)
         }
     }
     
@@ -36,6 +34,9 @@ class MomentMapViewController: UIViewController, MKMapViewDelegate {
         } else {
             annotationView!.annotation = annotation
         }
+        
+        mapView.showAnnotations([annotation], animated: true)
+
         return annotationView
     }
     
