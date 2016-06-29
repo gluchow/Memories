@@ -97,6 +97,7 @@ class EditMomentTableViewController: UITableViewController, UITextFieldDelegate,
             if let contacts = moment?.contacts {
                 pickedParticipants = contacts
             }
+            updateMomentImage()
         }
     }
     
