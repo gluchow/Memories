@@ -33,7 +33,7 @@ class WeatherService: NSObject {
         let urlString = urlWithParameter(parameter)
         
         if let url = NSURL(string: urlString) {
-            print("Request weather data - url: \(urlString)")
+            print("Try to request weather data - url: \(urlString)")
             executeWeatherRequest(forUrl: url, withResponseCallback: callback)
         }
     }
@@ -48,24 +48,22 @@ class WeatherService: NSObject {
                 
                 // Prüfe ob Wetterdaten auswertbar sind:
                 if response.result.error != nil {
-                    // TODO response.response!.statusCode prüfen
-                    callback(weather: nil, error: NSError(domain: "Fehler beim Aufruf der Wetterdaten.", code: response.response!.statusCode, userInfo: nil))
+                    callback(weather: nil, error: response.result.error)
                     return
                 }
                 if response.response?.statusCode != 200 {
-                    callback(weather: nil, error: NSError(domain: "Fehler beim Aufruf der Wetterdaten.", code: response.response!.statusCode, userInfo: nil))
+                    callback(weather: nil, error: NSError(domain: "HTTP response code is not 200. Something went wrong.", code: response.response!.statusCode, userInfo: nil))
                     return
                 }
                 
                 let result = response.result.value as! Dictionary<String, AnyObject>
-                // Wetterdaten nicht im Response enthalten:
+                // Weather data are not contained in response:
                 if result["weather"] == nil {
-                    callback(weather: nil, error: NSError(domain: "Keine Wetterdaten in der Antwort enthalten", code: response.response!.statusCode, userInfo: nil))
+                    callback(weather: nil, error: NSError(domain: "No weather data containing in response.", code: response.response!.statusCode, userInfo: nil))
                     return
                 }
                 
-                
-                // Wetterdaten sind vorhanden, erstelle eine CoreData Entität und gib diese zurück
+                // Weather data is available. Create and return a new CoreData enitity.
                 self.createWeather(result, withResponseCallback: callback)
 
         }
