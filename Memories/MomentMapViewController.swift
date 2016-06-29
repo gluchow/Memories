@@ -12,7 +12,6 @@ class MomentMapViewController: UIViewController, MKMapViewDelegate {
         }
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         updateUI()

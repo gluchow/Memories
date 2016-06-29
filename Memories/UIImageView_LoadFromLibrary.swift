@@ -10,10 +10,9 @@ extension UIImageView {
             print("photo library auth: \(authorization)")
             
             let asset = PHAsset.fetchAssetsWithALAssetURLs([url], options: nil).firstObject as! PHAsset
-            let fullTargetSize = size
             let options = PHImageRequestOptions()
             
-            PHImageManager.defaultManager().requestImageForAsset(asset, targetSize: fullTargetSize, contentMode: PHImageContentMode.AspectFit, options: options) {
+            PHImageManager.defaultManager().requestImageForAsset(asset, targetSize: size, contentMode: PHImageContentMode.AspectFit, options: options) {
                 (result, info) in
                 print("Fetched image with manager: \(result)")
                 if let image = result {

@@ -57,13 +57,13 @@ class WeatherService: NSObject {
                 }
                 
                 let result = response.result.value as! Dictionary<String, AnyObject>
-                // Weather data are not contained in response:
+                // Response doesn't have weather data
                 if result["weather"] == nil {
                     callback(weather: nil, error: NSError(domain: "No weather data containing in response.", code: response.response!.statusCode, userInfo: nil))
                     return
                 }
                 
-                // Weather data is available. Create and return a new CoreData enitity.
+                // Weather data is available. Create a new CoreData enitity and return it.
                 self.createWeather(result, withResponseCallback: callback)
 
         }

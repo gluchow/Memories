@@ -49,12 +49,7 @@ class EditMomentTableViewController: UITableViewController, UITextFieldDelegate,
     @IBAction func takePhoto(sender: UIButton) {
          print("take photo")
         if UIImagePickerController.isSourceTypeAvailable(.Camera) {
-            let picker = UIImagePickerController()
-            picker.sourceType = .PhotoLibrary
-            picker.mediaTypes = [kUTTypeImage as String]
-            picker.delegate = self
-            picker.allowsEditing = true
-            presentViewController(picker, animated: true, completion: nil)
+            showImagePicker(.Camera)
         } else {
             showMessage("Camera is not available.")
         }
@@ -63,15 +58,19 @@ class EditMomentTableViewController: UITableViewController, UITextFieldDelegate,
     @IBAction func chooseImageFromLib(sender: UIButton) {
         print("choose image from lib")
         if UIImagePickerController.isSourceTypeAvailable(.PhotoLibrary) {
-            let picker = UIImagePickerController()
-            picker.sourceType = .PhotoLibrary
-            picker.mediaTypes = [kUTTypeImage as String]
-            picker.delegate = self
-            picker.allowsEditing = true
-            presentViewController(picker, animated: true, completion: nil)
+            showImagePicker(.PhotoLibrary)
         } else {
             showMessage("Image library is not available.")
         }
+    }
+    
+    private func showImagePicker(type: UIImagePickerControllerSourceType) {
+        let picker = UIImagePickerController()
+        picker.sourceType = type
+        picker.mediaTypes = [kUTTypeImage as String]
+        picker.delegate = self
+        picker.allowsEditing = true
+        presentViewController(picker, animated: true, completion: nil)
     }
     
     @IBAction func addFromContacts(sender: UIButton) {

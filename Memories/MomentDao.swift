@@ -66,8 +66,8 @@ class MomentDao : BaseDao {
     }
     
     private func ensureNameIsValid(name: String) throws {
-        // Alternativ mit guard
-        // Leerzeichen entfernen und auf Länge prüfen
+        // alternatively using guard
+        // remove white space chars and check size:
         if name.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()).characters.count < 3 {
             throw MomentError.NameValidationError(message: "Name must have at least 3 characters.")
         }
