@@ -38,6 +38,7 @@ class MomentsTableViewController: UIViewController, UITableViewDataSource, UITab
         if let loadedMoments = MomentDao().findAll(forTimeline: timeline!) {
             moments = loadedMoments
         }
+        self.title = timeline?.name
         
         tableView.reloadData()
     }

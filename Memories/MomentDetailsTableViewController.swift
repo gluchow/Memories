@@ -89,8 +89,8 @@ class MomentDetailsTableViewController: UITableViewController, NSFetchedResultsC
     }
     
     private func updateCreationDate() {
-        if let creationDate = Utils.dateString(moment?.creationDate) {
-            creationDateLabel?.text = "Created on \(creationDate))"
+        if let creationDate = Utils.dateTimeString(moment?.creationDate) {
+            creationDateLabel?.text = "Created at \(creationDate)"
         } else {
             creationDateLabel?.text = noValue
         }
